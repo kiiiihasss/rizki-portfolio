@@ -1046,3 +1046,118 @@ img {
     font-size: 0.7rem;
   }
 }
+
+/* ====== MODERN GLASS & GRADIENT EFFECTS ====== */
+.glass {
+  background: rgba(255,255,255,0.92);
+  box-shadow: 0 8px 32px 0 rgba(80, 37, 194, 0.10);
+  backdrop-filter: blur(8px) saturate(120%);
+  -webkit-backdrop-filter: blur(8px) saturate(120%);
+  border-radius: 18px;
+  border: 1px solid rgba(220,220,220,0.18);
+  transition: box-shadow 0.4s cubic-bezier(.39,.575,.565,1), transform 0.4s cubic-bezier(.39,.575,.565,1);
+}
+.glass:hover {
+  box-shadow: 0 16px 48px 0 rgba(80, 37, 194, 0.18);
+  transform: translateY(-4px) scale(1.015);
+}
+
+.gradient-bg {
+  background: linear-gradient(120deg, #fff 60%, hsl(var(--hue-color), 69%, 98%) 100%);
+}
+
+/* ====== BUTTON & CARD HOVER EFFECTS ====== */
+.button, .portfolio__button {
+  transition: transform 0.25s cubic-bezier(.39,.575,.565,1), box-shadow 0.25s cubic-bezier(.39,.575,.565,1), background 0.25s;
+  border-radius: 0.85rem;
+  box-shadow: 0 2px 12px 0 rgba(106, 13, 173, 0.10);
+  position: relative;
+  overflow: hidden;
+}
+.button::after, .portfolio__button::after {
+  content: '';
+  position: absolute;
+  left: -50%;
+  top: -50%;
+  width: 200%;
+  height: 200%;
+  background: radial-gradient(circle, rgba(161,140,209,0.18) 0%, transparent 70%);
+  opacity: 0;
+  transition: opacity 0.4s;
+  z-index: 0;
+}
+.button:hover, .portfolio__button:hover {
+  transform: translateY(-3px) scale(1.06);
+  box-shadow: 0 8px 32px 0 rgba(106, 13, 173, 0.18);
+  background: linear-gradient(90deg, var(--first-color-alt) 60%, #a18cd1 100%);
+}
+.button:hover::after, .portfolio__button:hover::after {
+  opacity: 1;
+}
+
+.portfolio__img {
+  border-radius: 1.3rem;
+  box-shadow: 0 4px 24px 0 rgba(106, 13, 173, 0.10);
+  transition: transform 0.3s cubic-bezier(.39,.575,.565,1), box-shadow 0.3s cubic-bezier(.39,.575,.565,1);
+}
+.portfolio__img:hover {
+  transform: scale(1.06) rotate(-2deg);
+  box-shadow: 0 16px 48px 0 rgba(106, 13, 173, 0.18);
+}
+
+/* ====== SECTION CONTAINER RESPONSIVE ====== */
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 1.5rem;
+}
+
+@media (max-width: 900px) {
+  .container {
+    max-width: 98vw;
+    padding: 0 0.7rem;
+  }
+}
+@media (max-width: 768px) {
+  .container {
+    padding: 0 0.5rem;
+  }
+  .about__container, .skills__container, .portfolio__container, .contact__container {
+    grid-template-columns: 1fr !important;
+    gap: 2.2rem;
+  }
+  .about__img {
+    width: 100%;
+    max-width: 320px;
+    margin: 0 auto;
+    display: block;
+  }
+}
+
+/* ====== SECTION ANIMATION ====== */
+.section {
+  animation: fadeInUp 0.9s cubic-bezier(.39,.575,.565,1) both;
+}
+@keyframes fadeInUp {
+  0% { opacity: 0; transform: translateY(40px) scale(0.98); }
+  60% { opacity: 0.7; transform: translateY(-8px) scale(1.01); }
+  100% { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+/* ====== NAVBAR MODERN ====== */
+.header {
+  background: rgba(255,255,255,0.97);
+  box-shadow: 0 2px 16px 0 rgba(106, 13, 173, 0.08);
+  backdrop-filter: blur(6px) saturate(120%);
+  transition: box-shadow 0.3s;
+}
+.header:hover {
+  box-shadow: 0 8px 32px 0 rgba(106, 13, 173, 0.13);
+}
+
+/* ====== RESPONSIVE ANIMATION FOR CARD ====== */
+@media (hover: hover) and (pointer: fine) {
+  .glass:hover, .portfolio__img:hover {
+    transition: box-shadow 0.4s cubic-bezier(.39,.575,.565,1), transform 0.4s cubic-bezier(.39,.575,.565,1);
+  }
+}
