@@ -69,9 +69,6 @@
     }
 }
 
-/*========== Variables Dark theme ==========*/
-
-
 /*========== Button Dark/Light ==========*/
 
 
@@ -940,7 +937,7 @@ img {
 .skills__css { width: 85%; }
 .skills__js { width: 80%; }
 .skills__react { width: 85%; }
-.skills__figma { width: 30%; }
+.skills__capcut { width: 85%; }
 .skills__canva { width: 80%; }
 .skills__photoshop { width: 80%; }
 .skills__node { width: 50%; }
