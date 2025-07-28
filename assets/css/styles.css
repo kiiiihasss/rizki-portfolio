@@ -938,12 +938,16 @@ img {
 .skills__js { width: 80%; }
 .skills__react { width: 85%; }
 .skills__capcut { width: 85%; }
-.skills__canva { width: 80%; }
+.skills__canva { width: 90%; }
 .skills__photoshop { width: 80%; }
 .skills__node { width: 50%; }
 .skills__laravel { width: 80%; }
 .skills__php { width: 75%; }
 .skills__mysql { width: 75%; }
+.skills__backend_js { width: 70%; }
+.skills__tailwind { width: 80%; }
+.skills__react { width: 70%; }
+.skills__sqlite { width: 70%; }
 
 .skills__data {
   margin-bottom: 1rem;
@@ -1158,7 +1162,7 @@ img {
     transition: box-shadow 0.4s cubic-bezier(.39,.575,.565,1), transform 0.4s cubic-bezier(.39,.575,.565,1);
   }
 }
-.skills__tailwind {
+/* .skills__tailwind {
   width: 85%;
   background: hsl(var(--hue-color), 69%, 61%);
 }
@@ -1169,7 +1173,7 @@ img {
 .skills__sqlite {
    width: 70%;
   background: hsl(var(--hue-color), 69%, 61%);
-}
+} */
 
 .buy {
   display: flex;
