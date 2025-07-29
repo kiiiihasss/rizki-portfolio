@@ -1,3 +1,72 @@
+/*==================== RESPONSIVE NAVIGATION ====================*/
+@media screen and (min-width: 768px) {
+  .nav__menu {
+    position: initial;
+    bottom: initial;
+    width: auto;
+    background: none;
+    box-shadow: none;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    transition: none;
+  }
+  .nav__list {
+    display: flex;
+    grid-template-columns: none;
+    gap: 2rem;
+  }
+  .nav__close, .nav__toggle {
+    display: none;
+  }
+}
+
+@media screen and (max-width: 767px) {
+  .nav__menu {
+    position: fixed;
+    left: 0;
+    bottom: -100%;
+    width: 100vw;
+    height: 100vh;
+    background: var(--container-color);
+    box-shadow: 0 -1px 4px rgba(0,0,0,0.15);
+    padding: 2rem 1.5rem 4rem;
+    transition: .3s;
+    z-index: 1000;
+    display: block;
+  }
+  .show-menu {
+    bottom: 0;
+  }
+  .nav__list {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 2rem;
+    text-align: center;
+  }
+  .nav__close {
+    display: block;
+    position: absolute;
+    right: 1.3rem;
+    bottom: .5rem;
+    font-size: 2rem;
+    cursor: pointer;
+    color: var(--first-color);
+  }
+  .nav__toggle {
+    display: block;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .container {
+    max-width: 98vw;
+    margin-left: 1vw;
+    margin-right: 1vw;
+    padding-left: 0;
+    padding-right: 0;
+  }
+}
 /*==================== GOOGLE FONTS ====================*/
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap");
 
@@ -70,16 +139,23 @@
 }
 
 /*========== Button Dark/Light ==========*/
+
+
 /* Default Light Theme */
 body {
   background-color: #fff;
-  color: #111;
 }
 
-/* Dark Theme */
+
+main.dark-theme {
+  background-color: #111 !important;
+}
+
+
+
+/* Dark Theme: Only background changes, not text color */
 .dark-theme {
   background-color: #111;
-  color: #fff;
 }
 
 /* Optional: Dark header, nav, dsb */

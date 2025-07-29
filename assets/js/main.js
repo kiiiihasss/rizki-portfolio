@@ -1,3 +1,39 @@
+/*==================== DARK/LIGHT THEME TOGGLE ====================*/
+const themeToggle = document.getElementById('theme-toggle');
+const themeToggleIcon = document.getElementById('theme-toggle-icon');
+const darkTheme = 'dark-theme';
+const iconTheme = 'uil-sun';
+
+// Load theme from localStorage
+const selectedTheme = localStorage.getItem('selected-theme');
+const selectedIcon = localStorage.getItem('selected-icon');
+
+const mainEl = document.querySelector('main');
+const getCurrentTheme = () => mainEl.classList.contains(darkTheme) ? 'dark' : 'light';
+const getCurrentIcon = () => themeToggleIcon.classList.contains('uil-sun') ? 'uil-sun' : 'uil-moon';
+
+if (selectedTheme) {
+  mainEl.classList[selectedTheme === 'dark' ? 'add' : 'remove'](darkTheme);
+  themeToggleIcon.classList[selectedIcon === 'uil-sun' ? 'add' : 'remove']('uil-sun');
+  themeToggleIcon.classList[selectedIcon === 'uil-moon' ? 'add' : 'remove']('uil-moon');
+}
+
+if(themeToggle){
+    themeToggle.addEventListener('click', () => {
+        mainEl.classList.toggle(darkTheme);
+        // Change icon
+        if(mainEl.classList.contains(darkTheme)){
+            themeToggleIcon.classList.remove('uil-moon');
+            themeToggleIcon.classList.add('uil-sun');
+        } else {
+            themeToggleIcon.classList.remove('uil-sun');
+            themeToggleIcon.classList.add('uil-moon');
+        }
+        // Save to localStorage
+        localStorage.setItem('selected-theme', getCurrentTheme());
+        localStorage.setItem('selected-icon', getCurrentIcon());
+    });
+}
 /*==================== MENU SHOW Y HIDDEN ====================*/
 const navMenu = document.getElementById('nav-menu'),
       navToggle = document.getElementById('nav-toggle'),
@@ -142,25 +178,5 @@ function scrollUp(){
 }
 window.addEventListener('scroll', scrollUp)
 
-/*==================== DARK LIGHT THEME ====================*/
-const themeButton = document.getElementById('theme-button')
-const darkTheme = 'dark-theme'
-const iconTheme = 'uil-sun'
 
-const selectedTheme = localStorage.getItem('selected-theme')
-const selectedIcon = localStorage.getItem('selected-icon')
-
-const getCurrentTheme = () => document.body.classList.contains(darkTheme) ? 'dark' : 'light'
-const getCurrentIcon = () => themeButton.classList.contains(iconTheme) ? 'uil-moon' : 'uil-sun'
-
-if (selectedTheme) {
-  document.body.classList[selectedTheme === 'dark' ? 'add' : 'remove'](darkTheme)
-  themeButton.classList[selectedIcon === 'uil-moon' ? 'add' : 'remove'](iconTheme)
-}
-themeButton.addEventListener('click', () => {
-    document.body.classList.toggle(darkTheme)
-    themeButton.classList.toggle(iconTheme)
-    localStorage.setItem('selected-theme', getCurrentTheme())
-    localStorage.setItem('selected-icon', getCurrentIcon())
-})
 
