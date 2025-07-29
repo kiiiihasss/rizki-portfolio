@@ -70,6 +70,24 @@
 }
 
 /*========== Button Dark/Light ==========*/
+/* Default Light Theme */
+body {
+  background-color: #fff;
+  color: #111;
+}
+
+/* Dark Theme */
+.dark-theme {
+  background-color: #111;
+  color: #fff;
+}
+
+/* Optional: Dark header, nav, dsb */
+.dark-theme .header,
+.dark-theme .nav__menu {
+  background-color: #1f1f1f;
+}
+
 
 
 /*==================== BASE ====================*/
@@ -89,6 +107,7 @@ body {
   font-size: var(--normal-font-size);
   background-color: var(--body-color);
   color: var(--text-color);
+  transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 h1, h2, h3, h4 {
