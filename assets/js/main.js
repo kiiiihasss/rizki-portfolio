@@ -29,6 +29,11 @@ if(themeToggle){
             themeToggleIcon.classList.remove('uil-sun');
             themeToggleIcon.classList.add('uil-moon');
         }
+        // Animate icon
+        themeToggleIcon.classList.remove('theme-toggle-animate');
+        // Force reflow to restart animation
+        void themeToggleIcon.offsetWidth;
+        themeToggleIcon.classList.add('theme-toggle-animate');
         // Save to localStorage
         localStorage.setItem('selected-theme', getCurrentTheme());
         localStorage.setItem('selected-icon', getCurrentIcon());
@@ -178,5 +183,22 @@ function scrollUp(){
 }
 window.addEventListener('scroll', scrollUp)
 
+ const toggle = document.getElementById('theme-toggle');
+
+  toggle.addEventListener('click', () => {
+    document.body.classList.toggle('dark-theme');
+
+    // Optional: Simpan preferensi di localStorage
+    const isDark = document.body.classList.contains('dark-theme');
+    localStorage.setItem('theme', isDark ? 'dark' : 'light');
+  });
+
+  // Load saved theme saat halaman dibuka
+  const savedTheme = localStorage.getItem('theme');
+  if (savedTheme === 'dark') {
+    document.body.classList.add('dark-theme');
+  }
+
+  
 
 
