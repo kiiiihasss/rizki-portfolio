@@ -477,7 +477,9 @@
                     <img src="assets/img/portfolio1.jpg" alt="" class="portfolio__img" />
                     <div class="portfolio__data">
                         <h3 class="portfolio__title">Markaz Dimsum</h3>
+                        <br>
                         <p class="portfolio__description">Responsive website designed for all devices, featuring clean UI elements and smooth interactive animations.</p>
+                        <br>
                         <a href="https://markaz-dimsum-alpha.vercel.app" class="button button--flex button--small portfolio__button">
                             Demo
                             <i class="uil uil-arrow-right button__icon"></i>
@@ -548,13 +550,13 @@
     <section class="contact section glass" id="contact">
         <h2 class="section__title">Contact Me</h2>
         <h1>ㅤ</h1>
-        <div class="contact__container container grid">
-            <div>
+        <div class="contact__container container" style="display: flex; flex-wrap: wrap; gap: 2rem; justify-content: center; align-items: flex-start;">
+            <div style="flex:1 1 300px; min-width:260px; max-width:400px; background:rgba(255,255,255,0.15); border-radius:1.5rem; box-shadow:0 4px 24px rgba(0,0,0,0.08); padding:2rem 1.5rem; margin-bottom:2rem;">
                 <div class="contact__information animate__animated animate__fadeInLeft animate__delay-1s">
                     <i class="uil uil-phone contact__icon"></i>
                     <div>
                         <h3 class="contact__title">Call Me Or Chat Me at Whatsapp</h3>
-                        <span class="contact__subtitle">+62 895-3503-99990</span>
+                        <span class="contact__subtitle">+62 895-3503-99990</span><br>
                         <span class="contact__subtitle">+62 8977-8382-1691</span>
                     </div>
                 </div>
@@ -573,27 +575,27 @@
                     </div>
                 </div>
             </div>
-            <form action="" class="contact__form grid animate__animated animate__fadeInUp animate__delay-2s">
-                <div class="contact__inputs grid">
-                    <div class="contact__content">
+            <form action="" class="contact__form animate__animated animate__fadeInUp animate__delay-2s" style="flex:2 1 340px; min-width:260px; max-width:500px; background:rgba(255,255,255,0.25); border-radius:1.5rem; box-shadow:0 4px 24px rgba(0,0,0,0.10); padding:2rem 1.5rem;">
+                <div class="contact__inputs" style="display: flex; gap: 1rem; flex-wrap: wrap;">
+                    <div class="contact__content" style="flex:1 1 150px; min-width:120px;">
                         <label for="name" class="contact__label">Name</label>
-                        <input type="text" id="name" class="contact__input" placeholder="Your Name" required>
+                        <input type="text" id="name" class="contact__input" placeholder="Your Name" required style="width:100%; padding:0.75rem 1rem; border-radius:0.75rem; border:1px solid #e0e0e0; background:rgba(255,255,255,0.7); margin-top:0.3rem; margin-bottom:0.7rem; transition:box-shadow 0.2s, border 0.2s; box-shadow:0 2px 8px rgba(0,0,0,0.03);">
                     </div>
-                    <div class="contact__content">
+                    <div class="contact__content" style="flex:1 1 150px; min-width:120px;">
                         <label for="email" class="contact__label">Email</label>
-                        <input type="email" id="email" class="contact__input" placeholder="your@email.com" required>
+                        <input type="email" id="email" class="contact__input" placeholder="your@email.com" required style="width:100%; padding:0.75rem 1rem; border-radius:0.75rem; border:1px solid #e0e0e0; background:rgba(255,255,255,0.7); margin-top:0.3rem; margin-bottom:0.7rem; transition:box-shadow 0.2s, border 0.2s; box-shadow:0 2px 8px rgba(0,0,0,0.03);">
                     </div>
                 </div>
                 <div class="contact__content">
                     <label for="project" class="contact__label">Project</label>
-                    <input type="text" id="project" class="contact__input" placeholder="Project Title" required>
+                    <input type="text" id="project" class="contact__input" placeholder="Project Title" required style="width:100%; padding:0.75rem 1rem; border-radius:0.75rem; border:1px solid #e0e0e0; background:rgba(255,255,255,0.7); margin-top:0.3rem; margin-bottom:0.7rem; transition:box-shadow 0.2s, border 0.2s; box-shadow:0 2px 8px rgba(0,0,0,0.03);">
                 </div>
                 <div class="contact__content">
                     <label for="message" class="contact__label">Message</label>
-                    <textarea id="message" cols="0" rows="7" class="contact__input" placeholder="Describe your project" required></textarea>
+                    <textarea id="message" cols="0" rows="7" class="contact__input" placeholder="Describe your project" required style="width:100%; padding:0.75rem 1rem; border-radius:0.75rem; border:1px solid #e0e0e0; background:rgba(255,255,255,0.7); margin-top:0.3rem; margin-bottom:0.7rem; transition:box-shadow 0.2s, border 0.2s; box-shadow:0 2px 8px rgba(0,0,0,0.03);"></textarea>
                 </div>
-                <div>
-                    <button type="submit" class="button button--flex animate__animated animate__pulse animate__infinite">
+                <div style="text-align:right; margin-top:1rem;">
+                    <button type="submit" class="button button--flex animate__animated animate__pulse animate__infinite" style="padding:0.8rem 2.2rem; border-radius:1rem; font-size:1.1rem; background:linear-gradient(90deg,#6a0dad  0%,#e0e0e0 150%); color:#fff; box-shadow:0 2px 12px rgba(79,140,255,0.15); border:none; transition:background 0.2s, box-shadow 0.2s;">
                         Send Message
                         <i class="uil uil-message button__icon"></i>
                     </button>
@@ -602,9 +604,43 @@
         </div>
     </section>
 </main>
+<br>
+<br>
 
-
-
+  <!--==================== FOOTER ====================-->
+<footer class="custom-footer">
+  <div class="footer-wrapper">
+    <div class="footer-left">
+      <h2 class="footer-logo">Rizki<span>.</span></h2>
+      <p class="footer-text">
+        Thank you for visiting my portfolio. Feel free to reach out for any collaboration or project ideas!
+      </p>
+    </div>
+    <div class="footer-right">
+      <div class="footer-links-group">
+        <h4 class="footer-heading">Menu</h4>
+        <ul class="footer-links">
+          <li><a href="#home">Home</a></li>
+          <li><a href="#about">About</a></li>
+          <li><a href="#skills">Skills</a></li>
+          <li><a href="#portfolio">Portfolio</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+      </div>
+      <div class="footer-links-group">
+        <h4 class="footer-heading">Info</h4>
+        <ul class="footer-links">
+          <li><a href="#">Privacy Policy</a></li>
+          <li><a href="#">Terms & Conditions</a></li>
+          <li><a href="#">Support</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p>&copy; 2025 Rizki Portfolio Website. All rights reserved.</p>
+  </div>
+</footer>
 <script src="assets/js/swiper-bundle.min.js"></script>
 <script src="assets/js/main.js"></script>
 <script>
