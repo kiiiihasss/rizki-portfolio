@@ -1506,12 +1506,13 @@ img {
   margin-bottom: 0;
 }
 
+
 /* ====== FOOTER ====== */
 
 .custom-footer {
-  background: #222222;
+  background: linear-gradient(90deg, #9929EA 0%, #000000 200%);
   color: #ddd;
-  padding: 50px 20px 80px; /* Tambahkan ruang kosong di bawah */
+  padding: 50px 20px 80px;
   font-family: 'Segoe UI', sans-serif;
   border-top: 1px solid #222;
 }
@@ -1534,6 +1535,7 @@ img {
   font-weight: 600;
   color: #fff;
   margin-bottom: 10px;
+  text-align: left;
 }
 
 .footer-logo span {
@@ -1544,6 +1546,7 @@ img {
   font-size: 0.95rem;
   line-height: 1.6;
   color: #aaa;
+  text-align: left;
 }
 
 .footer-right {
@@ -1590,10 +1593,10 @@ img {
   margin-top: 40px;
   padding-top: 15px;
   font-size: 0.85rem;
-  color: #777;
+  color: white;
 }
 
-/* Responsive */
+/* ========== RESPONSIVE STYLES ========== */
 @media (max-width: 768px) {
   .footer-wrapper {
     flex-direction: column;
@@ -1603,6 +1606,7 @@ img {
   .footer-right {
     flex-direction: column;
     gap: 20px;
+    align-items: center;
   }
 
   .footer-logo,
@@ -1610,7 +1614,47 @@ img {
     text-align: center;
   }
 
+  .footer-heading,
+  .footer-links-group {
+    text-align: center;
+  }
+
   .footer-bottom {
     font-size: 0.8rem;
   }
 }
+
+@media (max-width: 480px) {
+  .custom-footer {
+    padding: 40px 15px 60px;
+  }
+
+  .footer-logo {
+    font-size: 1.7rem;
+  }
+
+  .footer-text {
+    font-size: 0.9rem;
+  }
+
+  .footer-links a {
+    font-size: 0.85rem;
+  }
+}
+
+@media (min-width: 769px) and (max-width: 1024px) {
+  .footer-wrapper {
+    flex-direction: row;
+    gap: 30px;
+  }
+
+  .footer-left,
+  .footer-right {
+    flex: 1 1 100%;
+  }
+
+  .footer-right {
+    justify-content: space-around;
+  }
+}
+
