@@ -1,3 +1,24 @@
+// Qualification Tabs
+document.addEventListener('DOMContentLoaded', function() {
+  const tabButtons = document.querySelectorAll('.qualification__button');
+  const tabContents = document.querySelectorAll('.qualification__content');
+  tabButtons.forEach(btn => {
+    btn.addEventListener('click', function() {
+      // Remove active class from all buttons
+      tabButtons.forEach(b => b.classList.remove('qualification__active'));
+      // Add active to clicked button
+      btn.classList.add('qualification__active');
+      // Hide all contents
+      tabContents.forEach(content => content.classList.remove('qualification__active'));
+      // Show content with matching id
+      const target = btn.getAttribute('data-target');
+      if (target) {
+        const content = document.querySelector(target);
+        if (content) content.classList.add('qualification__active');
+      }
+    });
+  });
+});
 // Swiper Portfolio Navigation
 if (typeof Swiper !== 'undefined' && document.querySelector('.swiper-container')) {
   var swiper = new Swiper('.swiper-container', {
