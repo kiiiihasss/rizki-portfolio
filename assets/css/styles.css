@@ -1343,8 +1343,8 @@ img {
 
 .buy {
   display: flex;
-  align-items: center;    /* vertical center */
-  gap: 2rem;              /* jarak antar blok */
+  align-items: center;    
+  gap: 2rem; 
   max-width: 900px;
   margin: 0 auto;
   padding: 2rem;
@@ -1569,6 +1569,20 @@ img {
   padding-top: 15px;
   font-size: 0.85rem;
   color: white;
+}
+
+body::after {
+  content: '';
+  display: block;
+  width: 100vw;
+  height: 120px;
+  background: #6A0DAD;
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  z-index: -1;
+  pointer-events: none;
+}
 }
 
 /* ========== RESPONSIVE STYLES ========== */
