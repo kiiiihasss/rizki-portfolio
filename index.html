@@ -4,648 +4,1046 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Rizki Portfolio</title>
-    <link rel="stylesheet" href="./assets/css/styles.css" />
-    <!-- <link rel="stylesheet" href="./assets/css/tailwind-custom.css" /> -->
-    <link rel="stylesheet" href="./assets/css/swiper-bundle.min.css" />
-    <link rel="shortcut icon" href="assets/img/logo.png" type="image/x-icon">
-    <link rel="apple-touch-icon" href="assets/img/logo.png">
+    <title>Rizki Portfolio | Dev</title>
+    
+    <!-- Unicons -->
     <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
-    <link href="https://unicons.iconscout.com/release/v4.0.0/css/line.css" rel="stylesheet" />
-    <!-- Tambahkan favicon jika ada -->
+    <!-- Swiper CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+    
+    <!--==================== CSS (ULTRA PREMIUM PROGRAMMER VIBES) ====================-->
+    <style>
+        /* Menggunakan Font Monospace untuk Code Vibes dan Outfit untuk Keterbacaan Modern */
+        @import url('https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500;600&family=Outfit:wght@300;400;500;600;700;800&display=swap');
+
+        /*========== VARIABLES ==========*/
+        :root {
+            --header-height: 5rem;
+            --hue: 260; 
+            
+            /* Dark Theme Colors (Default for Programmer) */
+            --first-color: #9d4edd; /* Cyber Purple */
+            --first-color-alt: #7b2cbf;
+            --accent-color: #00f5d4; /* Neon Cyan */
+            --title-color: #f8f9fa;
+            --text-color: #adb5bd;
+            --text-color-light: #6c757d;
+            --body-color: #09090b; /* Very dark, almost black */
+            --container-color: #121214;
+            --glass-bg: rgba(18, 18, 20, 0.7);
+            --glass-border: rgba(255, 255, 255, 0.05);
+            --input-bg: #18181b;
+            --shadow-glow: rgba(157, 78, 221, 0.3);
+
+            --title-font: 'Outfit', sans-serif;
+            --code-font: 'Fira Code', monospace; /* Programmer Font */
+
+            --big-font-size: 3rem;
+            --h1-font-size: 2.25rem;
+            --h2-font-size: 1.75rem;
+            --h3-font-size: 1.25rem;
+            --normal-font-size: 1rem;
+            --small-font-size: 0.875rem;
+            --smaller-font-size: 0.813rem;
+
+            --z-tooltip: 10;
+            --z-fixed: 100;
+            --z-modal: 1000;
+        }
+
+        @media screen and (min-width: 968px) {
+            :root {
+                --big-font-size: 4.5rem;
+                --h1-font-size: 3rem;
+                --h2-font-size: 2.25rem;
+                --h3-font-size: 1.5rem;
+            }
+        }
+
+        /*========== LIGHT THEME ==========*/
+        body.light-theme {
+            --first-color: #7b2cbf;
+            --accent-color: #00b4d8;
+            --title-color: #1a1a2e;
+            --text-color: #4a4a68;
+            --text-color-light: #8e8eab;
+            --body-color: #f8f9fa;
+            --container-color: #ffffff;
+            --glass-bg: rgba(255, 255, 255, 0.8);
+            --glass-border: rgba(0, 0, 0, 0.05);
+            --input-bg: #f1f3f5;
+            --shadow-glow: rgba(123, 44, 191, 0.15);
+        }
+
+        /*========== BASE ==========*/
+        * { box-sizing: border-box; padding: 0; margin: 0; }
+        html { scroll-behavior: smooth; overflow-x: hidden; }
+        body {
+            font-family: var(--title-font);
+            font-size: var(--normal-font-size);
+            background-color: var(--body-color);
+            color: var(--text-color);
+            line-height: 1.6;
+            transition: background-color 0.4s, color 0.4s;
+            overflow-x: hidden;
+        }
+        h1, h2, h3 { color: var(--title-color); font-weight: 700; line-height: 1.2; }
+        ul { list-style: none; }
+        a { text-decoration: none; color: inherit; }
+        img { max-width: 100%; height: auto; display: block; }
+        
+        .code-text { font-family: var(--code-font); color: var(--accent-color); font-size: 0.9em; }
+        .tag-color { color: var(--first-color); }
+
+        /*========== BACKGROUND EFFECTS ==========*/
+        .bg-grid {
+            position: fixed; top: 0; left: 0; width: 100vw; height: 100vh;
+            background-image: 
+                linear-gradient(to right, rgba(255,255,255,0.03) 1px, transparent 1px),
+                linear-gradient(to bottom, rgba(255,255,255,0.03) 1px, transparent 1px);
+            background-size: 40px 40px;
+            z-index: -1; pointer-events: none;
+        }
+        body.light-theme .bg-grid {
+            background-image: 
+                linear-gradient(to right, rgba(0,0,0,0.03) 1px, transparent 1px),
+                linear-gradient(to bottom, rgba(0,0,0,0.03) 1px, transparent 1px);
+        }
+        .bg-glow {
+            position: fixed; top: -10%; left: -10%; width: 50vw; height: 50vw;
+            background: radial-gradient(circle, var(--shadow-glow) 0%, transparent 60%);
+            z-index: -1; filter: blur(80px); pointer-events: none;
+        }
+
+        /*========== LOADING SCREEN (TERMINAL BOOT) ==========*/
+        #loading-screen {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: #000; z-index: 9999;
+            display: flex; flex-direction: column; justify-content: center; padding: 2rem;
+            font-family: var(--code-font); color: #0f0;
+            transition: opacity 0.8s ease, visibility 0.8s ease;
+        }
+        .boot-text { margin-bottom: 0.5rem; opacity: 0; animation: typeLine 0.1s forwards; font-size: 0.9rem; }
+        .boot-text:nth-child(1) { animation-delay: 0.1s; }
+        .boot-text:nth-child(2) { animation-delay: 0.3s; }
+        .boot-text:nth-child(3) { animation-delay: 0.5s; color: #fff; }
+        .boot-text:nth-child(4) { animation-delay: 0.7s; color: var(--accent-color); }
+        .loading-bar {
+            width: 100%; max-width: 400px; height: 4px; background: #333; margin-top: 1rem;
+            position: relative; overflow: hidden; opacity: 0; animation: typeLine 0.1s forwards 0.9s;
+        }
+        .loading-progress { width: 0%; height: 100%; background: var(--accent-color); animation: fillBar 1s ease forwards 1s; }
+        @keyframes typeLine { to { opacity: 1; } }
+        @keyframes fillBar { to { width: 100%; } }
+
+        /*========== REUSABLE CLASSES ==========*/
+        .section { padding: 8rem 0 4rem; }
+        .section__title { 
+            font-size: var(--h1-font-size); text-align: center; margin-bottom: 0.5rem; 
+            font-family: var(--code-font); font-weight: 600;
+        }
+        .section__subtitle {
+            display: block; font-size: var(--small-font-size); text-align: center; margin-bottom: 4rem;
+            color: var(--text-color-light); letter-spacing: 0.1em; text-transform: uppercase;
+        }
+        .container { max-width: 1100px; margin: 0 auto; padding: 0 1.5rem; }
+        .grid { display: grid; gap: 2rem; }
+
+        .terminal-box {
+            background: var(--container-color);
+            border: 1px solid var(--glass-border);
+            border-radius: 1rem;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            transition: transform 0.3s ease;
+        }
+        .terminal-box:hover { transform: translateY(-5px); border-color: var(--first-color); }
+        .terminal-header {
+            background: rgba(0,0,0,0.2); padding: 0.8rem 1rem;
+            display: flex; gap: 0.5rem; border-bottom: 1px solid var(--glass-border);
+            align-items: center;
+        }
+        .dot { width: 12px; height: 12px; border-radius: 50%; }
+        .dot-red { background: #ff5f56; } .dot-yellow { background: #ffbd2e; } .dot-green { background: #27c93f; }
+        .terminal-title { margin-left: auto; margin-right: auto; font-family: var(--code-font); font-size: 0.8rem; color: var(--text-color-light); }
+
+        .button {
+            display: inline-flex; align-items: center; gap: 0.8rem;
+            background: transparent; color: var(--title-color) !important; 
+            padding: 0.8rem 2rem; border-radius: 0.5rem;
+            font-family: var(--code-font); font-weight: 600; font-size: 0.9rem;
+            border: 1px solid var(--first-color); cursor: pointer;
+            transition: all 0.3s; position: relative; overflow: hidden;
+            box-shadow: 0 0 10px transparent;
+        }
+        .button::before {
+            content: ''; position: absolute; top: 0; left: 0; width: 0%; height: 100%;
+            background: rgba(157, 78, 221, 0.1); transition: 0.3s; z-index: -1;
+        }
+        .button:hover { box-shadow: 0 0 20px var(--shadow-glow); border-color: var(--accent-color); color: var(--accent-color) !important; }
+        .button:hover::before { width: 100%; }
+        .button--primary { background: var(--first-color); color: #fff !important; border: none; }
+        .button--primary::before { background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent); left: -100%; width: 100%; }
+        .button--primary:hover { background: var(--first-color-alt); box-shadow: 0 0 20px var(--shadow-glow); color: #fff !important;}
+        .button--primary:hover::before { left: 100%; transition: 0.6s; }
+
+        /*========== DYNAMIC ISLAND HEADER ==========*/
+        .header {
+            width: 100%; position: fixed; top: 0; left: 0; z-index: var(--z-fixed);
+            background: transparent; transition: all 0.5s cubic-bezier(0.25, 1, 0.5, 1);
+            padding: 1rem 0;
+        }
+        
+        /* The Magic: Dynamic Island Effect when scrolled */
+        .header.scrolled {
+            top: 1rem; left: 50%; transform: translateX(-50%);
+            width: 90%; max-width: 800px; padding: 0;
+            border-radius: 3rem; background: var(--glass-bg);
+            backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px);
+            border: 1px solid var(--glass-border);
+            box-shadow: 0 10px 40px rgba(0,0,0,0.3);
+        }
+
+        .nav { height: 100%; display: flex; justify-content: space-between; align-items: center; padding: 0.5rem 2rem; transition: padding 0.3s; }
+        .header.scrolled .nav { padding: 0.5rem 1.5rem; }
+        
+        .nav__logo { font-family: var(--code-font); font-size: 1.2rem; font-weight: 700; color: var(--title-color); display: flex; align-items: center; gap: 0.5rem;}
+        .nav__logo i { color: var(--accent-color); font-size: 1.5rem; }
+        
+        .nav__menu { display: flex; align-items: center; }
+        .nav__list { display: flex; gap: 2rem; }
+        .nav__link { font-family: var(--code-font); font-size: 0.9rem; font-weight: 500; transition: 0.3s; color: var(--text-color); display: flex; align-items: center; }
+        .nav__link:hover { color: var(--accent-color); }
+        .nav__link .tag { opacity: 0; transition: 0.3s; color: var(--first-color); font-size: 0.8em; margin: 0 2px;}
+        .nav__link:hover .tag { opacity: 1; }
+        
+        .nav__close, .nav__toggle { display: none; font-size: 1.5rem; cursor: pointer; color: var(--title-color); }
+        
+        .nav__btns { display: flex; align-items: center; gap: 1rem; }
+        .change-theme { font-size: 1.2rem; color: var(--text-color); cursor: pointer; transition: 0.3s; }
+        .change-theme:hover { color: var(--accent-color); }
+        .lang-btn {
+            background: transparent; color: var(--text-color); border: 1px solid var(--glass-border);
+            padding: 0.2rem 0.6rem; border-radius: 0.5rem; font-weight: 600; cursor: pointer; 
+            font-family: var(--code-font); font-size: 0.8rem; transition: 0.3s;
+        }
+        .lang-btn:hover { border-color: var(--first-color); color: var(--first-color); }
+
+        @media screen and (max-width: 768px) {
+            .header.scrolled { width: 95%; top: 0.5rem; }
+            .nav__menu {
+                position: fixed; top: -150%; left: 0; width: 100%;
+                background: var(--container-color); padding: 5rem 2rem 3rem;
+                box-shadow: 0 10px 30px rgba(0,0,0,0.5); border-radius: 0 0 2rem 2rem;
+                transition: top 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55); 
+                flex-direction: column; text-align: center; border-bottom: 1px solid var(--first-color);
+            }
+            .nav__list { flex-direction: column; gap: 2rem; }
+            .nav__menu.show-menu { top: 0; }
+            .nav__close { display: block; position: absolute; top: 1.5rem; right: 2rem; font-size: 2rem;}
+            .nav__toggle { display: block; }
+        }
+
+        /*========== SMOOTH REVEAL ANIMATIONS ==========*/
+        .reveal { opacity: 0; transform: translateY(40px); transition: all 0.8s cubic-bezier(0.5, 0, 0, 1); }
+        .reveal.active { opacity: 1; transform: translateY(0); }
+        .reveal-delay-1 { transition-delay: 0.1s; }
+        .reveal-delay-2 { transition-delay: 0.2s; }
+        .reveal-delay-3 { transition-delay: 0.3s; }
+
+        /*========== HOME ==========*/
+        .home__container { grid-template-columns: 1fr 1fr; align-items: center; min-height: 80vh; padding-top: 6rem;}
+        
+        .home__data { display: flex; flex-direction: column; align-items: flex-start; z-index: 1;}
+        .home__greeting { font-family: var(--code-font); color: var(--accent-color); margin-bottom: 1rem; font-size: 1.1rem; display: flex; align-items: center; gap: 0.5rem;}
+        .home__title { font-size: var(--big-font-size); margin-bottom: 0.5rem; line-height: 1.1; letter-spacing: -1px;}
+        .home__title span { color: var(--first-color); }
+        
+        .home__subtitle-wrapper { height: 30px; margin-bottom: 1.5rem; display: flex; align-items: center;}
+        .home__subtitle { font-size: var(--h3-font-size); font-family: var(--code-font); color: var(--text-color-light); }
+        .cursor { display: inline-block; width: 10px; height: 20px; background: var(--accent-color); animation: blink 1s infinite; margin-left: 5px; }
+        @keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0; } }
+        
+        .home__description { margin-bottom: 2.5rem; max-width: 500px; font-size: 1.1rem;}
+        
+        .home__buttons { display: flex; gap: 1.5rem; align-items: center; }
+        .home__social { display: flex; gap: 1.5rem; margin-top: 3rem; }
+        .home__social-icon { font-size: 1.5rem; color: var(--text-color-light); transition: 0.3s; }
+        .home__social-icon:hover { color: var(--accent-color); transform: translateY(-5px); }
+
+        .home__img-wrapper { position: relative; display: flex; justify-content: center; }
+        .home__img-border {
+            position: relative; width: 320px; height: 320px; border-radius: 2rem;
+            background: linear-gradient(135deg, var(--first-color), transparent, var(--accent-color));
+            padding: 3px; animation: float 6s ease-in-out infinite;
+        }
+        @keyframes float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-15px); } }
+        
+        .home__img {
+            width: 100%; height: 100%; border-radius: inherit; background: var(--container-color);
+            overflow: hidden; display: flex; align-items: center; justify-content: center; position: relative;
+        }
+        .home__img img { width: 100%; height: 100%; object-fit: cover; filter: grayscale(20%) contrast(110%); transition: 0.5s; }
+        .home__img:hover img { filter: grayscale(0%) contrast(100%); transform: scale(1.05); }
+
+        @media screen and (max-width: 968px) {
+            .home__container { grid-template-columns: 1fr; text-align: center; gap: 4rem; }
+            .home__data { align-items: center; }
+            .home__description { margin: 0 auto 2.5rem; }
+            .home__img-wrapper { order: -1; }
+            .home__img-border { width: 260px; height: 260px; }
+        }
+
+        /*========== ABOUT ==========*/
+        .about__container { grid-template-columns: 1fr 1.2fr; gap: 4rem; align-items: center; }
+        .about__terminal { padding: 2rem; }
+        .about__text { margin-bottom: 2rem; font-size: 1.05rem; }
+        .about__info { display: flex; justify-content: space-between; border-top: 1px dashed var(--glass-border); padding-top: 2rem;}
+        .about__info > div { text-align: center; }
+        .about__info-title { font-size: var(--h2-font-size); color: var(--accent-color); font-family: var(--code-font); }
+        .about__info-name { font-size: var(--small-font-size); color: var(--text-color-light); display: block; margin-top: 0.5rem;}
+        
+        .about__code-block {
+            background: rgba(0,0,0,0.3); border-radius: 0.5rem; padding: 1rem;
+            font-family: var(--code-font); font-size: 0.85rem; color: #a9b7c6;
+            margin-bottom: 2rem; border: 1px solid rgba(255,255,255,0.05);
+        }
+        .code-keyword { color: #cc7832; } .code-string { color: #6a8759; } .code-function { color: #ffc66d; }
+
+        @media screen and (max-width: 768px) {
+            .about__container { grid-template-columns: 1fr; }
+        }
+
+        /*========== SKILLS ==========*/
+        .skills__container { grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); }
+        .skills__content { padding: 2rem; height: 100%; }
+        .skills__header { margin-bottom: 2rem; display: flex; align-items: center; gap: 1rem; }
+        .skills__header i { font-size: 2rem; color: var(--accent-color); }
+        .skills__title { font-size: var(--h3-font-size); }
+        
+        .skills__list { display: flex; flex-direction: column; gap: 1.5rem; }
+        .skills__data { width: 100%; }
+        .skills__titles { display: flex; justify-content: space-between; margin-bottom: 0.5rem; font-family: var(--code-font); font-size: 0.9rem;}
+        
+        /* Tech Progress Bar */
+        .skills__bar { 
+            height: 6px; background: rgba(255,255,255,0.05); border-radius: 3px; 
+            overflow: hidden; position: relative; 
+        }
+        .skills__percentage { 
+            display: block; height: 100%; background: var(--first-color); 
+            border-radius: 3px; position: relative;
+        }
+        .skills__percentage::after {
+            content: ''; position: absolute; top: 0; right: 0; width: 10px; height: 100%;
+            background: #fff; box-shadow: 0 0 10px #fff;
+        }
+
+        /*========== QUALIFICATION (TIMELINE) ==========*/
+        .qual__container { max-width: 800px; margin: 0 auto; }
+        .qual__tabs { display: flex; justify-content: center; gap: 2rem; margin-bottom: 4rem; }
+        .qual__btn {
+            font-family: var(--code-font); font-size: 1.1rem; color: var(--text-color-light);
+            cursor: pointer; padding-bottom: 0.5rem; border-bottom: 2px solid transparent; transition: 0.3s;
+        }
+        .qual__btn:hover, .qual__btn.active { color: var(--accent-color); border-bottom-color: var(--accent-color); }
+        
+        .qual__content { display: none; }
+        .qual__content.active { display: block; animation: fadeUp 0.5s ease; }
+        @keyframes fadeUp { from {opacity:0; transform: translateY(20px);} to {opacity:1; transform: translateY(0);} }
+        
+        .timeline { position: relative; padding-left: 2rem; border-left: 2px solid var(--glass-border); }
+        .timeline-item { position: relative; margin-bottom: 3rem; }
+        .timeline-item::before {
+            content: ''; position: absolute; left: -2.45rem; top: 0;
+            width: 16px; height: 16px; border-radius: 50%; background: var(--body-color);
+            border: 3px solid var(--first-color); transition: 0.3s;
+        }
+        .timeline-item:hover::before { background: var(--accent-color); border-color: var(--accent-color); box-shadow: 0 0 15px var(--accent-color);}
+        
+        .qual__title { font-size: 1.2rem; margin-bottom: 0.2rem; }
+        .qual__subtitle { display: block; font-size: 0.9rem; color: var(--text-color-light); margin-bottom: 0.5rem; font-family: var(--code-font);}
+        .qual__cal { font-size: 0.8rem; color: var(--accent-color); display: flex; align-items: center; gap: 0.5rem; font-family: var(--code-font);}
+
+        /*========== PRESTASI (ACHIEVEMENTS) ==========*/
+        .prestasi__container { max-width: 800px; margin: 0 auto; }
+        .achieve-grid { display: grid; gap: 1rem; }
+        .achieve-card {
+            display: flex; align-items: center; gap: 1.5rem; padding: 1.5rem;
+            background: rgba(255,255,255,0.02); border: 1px solid var(--glass-border);
+            border-radius: 1rem; transition: 0.3s; cursor: default;
+        }
+        .achieve-card:hover { background: rgba(255,255,255,0.05); transform: translateX(10px); border-color: rgba(255,255,255,0.1); }
+        .achieve-icon { 
+            width: 50px; height: 50px; min-width: 50px; border-radius: 50%;
+            background: rgba(157, 78, 221, 0.1); color: var(--first-color);
+            display: flex; align-items: center; justify-content: center; font-size: 1.5rem;
+        }
+        .achieve-text { font-weight: 500; font-size: 1.05rem; }
+
+        /*========== PORTFOLIO ==========*/
+        .portfolio__container { padding-bottom: 4rem; }
+        .portfolio__card { padding: 1.5rem; border-radius: 1.5rem; display: flex; flex-direction: column; gap: 1.5rem; }
+        .portfolio__img-wrapper { border-radius: 1rem; overflow: hidden; position: relative; }
+        .portfolio__img { width: 100%; transition: 0.5s ease; filter: brightness(0.8); }
+        .portfolio__card:hover .portfolio__img { transform: scale(1.05); filter: brightness(1); }
+        
+        .portfolio__tags { display: flex; gap: 0.5rem; margin-bottom: 1rem; }
+        .p-tag { font-size: 0.7rem; font-family: var(--code-font); padding: 0.2rem 0.8rem; background: rgba(0, 245, 212, 0.1); color: var(--accent-color); border-radius: 2rem; border: 1px solid rgba(0, 245, 212, 0.2);}
+        
+        .portfolio__title { font-size: var(--h2-font-size); margin-bottom: 0.5rem; }
+        .portfolio__desc { color: var(--text-color-light); font-size: 0.95rem; margin-bottom: 1.5rem; }
+
+        /*========== CONTACT ==========*/
+        .contact__container { grid-template-columns: 1fr 1.5fr; gap: 4rem; align-items: flex-start; }
+        .contact__info-wrap { display: flex; flex-direction: column; gap: 2rem; }
+        .contact__card { display: flex; align-items: flex-start; gap: 1.5rem; }
+        .contact__card-icon { 
+            font-size: 1.8rem; color: var(--accent-color); background: rgba(0, 245, 212, 0.1); 
+            padding: 1rem; border-radius: 1rem; border: 1px solid rgba(0, 245, 212, 0.2);
+        }
+        .contact__card-title { font-size: 1.1rem; margin-bottom: 0.2rem; }
+        .contact__card-data { font-size: 0.9rem; color: var(--text-color-light); font-family: var(--code-font);}
+
+        .contact__form { padding: 3rem; }
+        .form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; margin-bottom: 1.5rem; }
+        .form-group { position: relative; margin-bottom: 1.5rem; }
+        .contact__input {
+            width: 100%; padding: 1.2rem; background: rgba(0,0,0,0.2); border: 1px solid var(--glass-border);
+            color: var(--title-color); border-radius: 0.5rem; font-family: var(--title-font); font-size: 1rem;
+            transition: 0.3s;
+        }
+        .contact__input:focus { border-color: var(--first-color); background: rgba(0,0,0,0.4); outline: none; box-shadow: 0 0 15px rgba(157, 78, 221, 0.1);}
+        .form-group label {
+            position: absolute; top: -10px; left: 15px; background: var(--container-color); padding: 0 5px;
+            font-size: 0.8rem; font-family: var(--code-font); color: var(--first-color);
+        }
+
+        @media screen and (max-width: 768px) {
+            .contact__container { grid-template-columns: 1fr; gap: 3rem; }
+            .form-grid { grid-template-columns: 1fr; }
+            .contact__form { padding: 2rem 1rem; }
+        }
+
+        /*========== FOOTER ==========*/
+        .footer { background: rgba(0,0,0,0.3); padding: 4rem 0 2rem; margin-top: 6rem; border-top: 1px solid var(--glass-border); }
+        .footer__container { grid-template-columns: 1fr 1fr 1fr; gap: 3rem; justify-items: center; text-align: center;}
+        .footer__logo { font-family: var(--code-font); font-size: 2rem; font-weight: 700; color: var(--title-color); display: flex; align-items: center; gap: 0.5rem; justify-content: center; margin-bottom: 1rem;}
+        .footer__logo i { color: var(--accent-color); }
+        .footer__links { display: flex; flex-direction: column; gap: 1rem; }
+        .footer__link { font-family: var(--code-font); font-size: 0.9rem; transition: 0.3s; }
+        .footer__link:hover { color: var(--accent-color); }
+        .footer__socials { display: flex; gap: 1.5rem; justify-content: center; margin-top: 1rem;}
+        .footer__social { font-size: 1.5rem; color: var(--text-color); transition: 0.3s; }
+        .footer__social:hover { color: var(--first-color); transform: translateY(-3px);}
+        .footer__copy { text-align: center; margin-top: 4rem; font-size: 0.8rem; color: var(--text-color-light); font-family: var(--code-font);}
+
+        @media screen and (max-width: 768px) {
+            .footer__container { grid-template-columns: 1fr; gap: 2rem; }
+        }
+
+        /*========== SCROLLBAR ==========*/
+        ::-webkit-scrollbar { width: 8px; background: var(--body-color); }
+        ::-webkit-scrollbar-thumb { background: #333; border-radius: 10px; }
+        ::-webkit-scrollbar-thumb:hover { background: var(--first-color); }
+        body.light-theme ::-webkit-scrollbar-thumb { background: #ccc; }
+    </style>
 </head>
 <body>
-
-  <!--==================== HEADER ====================-->
-  <header class="navbar-header">
-    <div class="navbar-title">Rizki Portfolio</div>
-  </header>
-
-  
-
-  <!--==================== MAIN ====================-->
-  <main class="main gradient-bg">
-    <!--==================== HOME ====================-->
-    <section class="home section glass" id="home">
-      <div class="home__container container grid">
-        <div class="home__content grid">
-          <div
-            class="home__social animate__animated animate__fadeInLeft animate__delay-1s"
-          >
-            <a href="https://www.instagram.com/m.rizzzz.97/" target="_blank" class="home__social-icon" title="Instagram"
-              ><i class="uil uil-instagram"></i>
-            <a href="https://github.com/mrizzzz97" target="_blank" class="home__social-icon" title="GitHub"
-              ><i class="uil uil-github-alt"></i
-            ></a>
-             <a href="https://wa.me/6287783821691" target="_blank" class="home__social-icon" title="WhatsApp">
-                <i class="uil uil-whatsapp"></i>
-              </a>
-              <a href="https://www.linkedin.com/in/muhammad-rizki-suryapratama" target="_blank" class="home__social-icon" title="linkedin">
-                <i class="uil uil-linkedin"></i>
-              </a>
-              <a href="https://www.youtube.com/@m.rizzzz.97"  target="_blank" class="home__social-icon" title="Youtube">
-                <i class="uil uil-youtube"></i>
-              </a>
-            <!-- Dark/Light mode toggle button -->
-            <!-- <button id="theme-toggle" class="home__social-icon" title="Toggle Dark/Light Mode" style="background:none;border:none;outline:none;cursor:pointer;margin-top:10px;">
-              <i id="theme-toggle-icon" class="uil uil-moon"></i> -->
-            </button>
-          </div>
-          <div class="home__img animate__animated animate__zoomIn animate__delay-1s">
-            <div class="home__img-bg glass">
-              <img
-                src="assets/img/perfil.png"
-                alt="Profile"
-                class="home__blob-img"
-              />
-            </div>
-          </div>
-          <div class="home__data animate__animated animate__fadeInRight animate__delay-1s">
-            <h1 class="home__title">Hi, I'm Rizki</h1>
-            <h3 class="home__subtitle">Beginner Full Stack Developer | Freelancer</h3>
-            <p class="home__description"> I’m still pretty new to web development, but I’m really excited to keep learning and growing every day. Right now, I’m focusing on the basics—building small projects. It’s not always easy (errors love me 😂), but I enjoy the process—trying things out, breaking stuff, fixing them, and seeing my ideas come to life on the screen. I know I’ve still got a long way to go, but I’m in this for the long run. Step by step, I’m building not just websites, but also my skills, confidence, and creativity.
-            </p>
-            <a href="#contact" class="button button--flex home__button">
-              Contact Me <i class="uil uil-message button__icon"></i>
-            </a>
-          </div>
-        </div>
-        <div class="home__scroll animate__animated animate__fadeInUp animate__delay-2s">
-          <a href="#about" class="home__scroll-button button--flex">
-            <i class="uil uil-mouse-alt home__scroll-mouse"></i>
-            <span class="home__scroll-name">Scroll down</span>
-            <i class="uil uil-arrow-down home__scroll-arrow"></i>
-          </a>
-        </div>
-      </div>
-    </section>
-
-    <!--==================== ABOUT ====================-->
-    <section class="about section glass" id="about">
-      <h2 class="section__title">About Me</h2>
-      <span class="section__subtitle">My introduction</span>
-      <div class="about__container container grid">
-        <img src="assets/img/about.jpg" alt="" class="about__img glass" />
-        <div class="about__data">
-          <p class="about__description">
-            Beginner web developer with a strong interest in design and development. Learning by doing, and always looking to improve through real-world practice.
-          </p>
-          <div class="about__info">
-            <div>
-              <span class="about__info-title">05+</span>
-              <span class="about__info-name">Years <br /> experience</span>
-            </div>
-            <div>
-              <span class="about__info-title">45+</span>
-              <span class="about__info-name">Completed <br /> project</span>
-            </div>
-            <div>
-              <span class="about__info-title">03</span>
-              <span class="about__info-name">Companies <br /> worked</span>
-            </div>
-          </div>
-          <div class="about__buttons">
-            <!-- <a
-              download
-              href="#"
-              class="button button--flex"
-            >
-              Download CV <i class="uil uil-download-alt button__icon"></i> -->
-            </a>
-          </div>
-        </div>
-      </div>
-    </section>
-
-
-  <!--==================== SKILLS ====================-->
-<section class="skills section glass" id="skills">
-  <h2 class="section__title">Skills</h2>
-  <span class="section__subtitle">My technical level</span>
-
-  <div class="skills__container container grid">
-
-    <!-- Designer Section -->
-    <div class="skills__content">
-      <div class="skills__header">
-        <i class="uil uil-swatchbook skills__icon"></i>
-        <div>
-          <h1 class="skills__title">UI/UX Designer</h1>
-          <span class="skills__subtitle">More than 4 years</span>
-        </div>
-        <i class="uil uil-angle-down skills__arrow"></i>
-      </div>
-
-      <div class="skills__list grid">
-        <div class="skills__data">
-          <div class="skills__titles">
-            <h3 class="skills__name">Capcut</h3>
-            <span class="skills__number">85%</span>
-          </div>
-          <div class="skills__bar">
-            <span class="skills__percentage skills__capcut"></span>
-          </div>
-        </div>
-
-        <div class="skills__data">
-          <div class="skills__titles">
-            <h3 class="skills__name">Canva</h3>
-            <span class="skills__number">90%</span>
-          </div>
-          <div class="skills__bar">
-            <span class="skills__percentage skills__canva"></span>
-          </div>
-        </div>
-
-        <div class="skills__data">
-          <div class="skills__titles">
-            <h3 class="skills__name">Photoshop</h3>
-            <span class="skills__number">80%</span>
-          </div>
-          <div class="skills__bar">
-            <span class="skills__percentage skills__photoshop"></span>
-          </div>
-        </div>
-
-        <div class="skills__data">
-          <div class="skills__titles">
-            <h3 class="skills__name">Framer</h3>
-            <span class="skills__number">70%</span>
-          </div>
-          <div class="skills__bar">
-            <span class="skills__percentage skills__framer"></span>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- Frontend Developer Section -->
-     <br>
-     <br>
-     <br>
-     
-    <div class="skills__content">
-      <div class="skills__header">
-        <i class="uil uil-brackets-curly skills__icon"></i>
-        <div>
-          <h1 class="skills__title">Frontend Developer</h1>
-          <span class="skills__subtitle">More than 3 years</span>
-        </div>
-        <i class="uil uil-angle-down skills__arrow"></i>
-      </div>
-
-      <div class="skills__list grid">
-        <div class="skills__data">
-          <div class="skills__titles">
-            <h3 class="skills__name">HTML</h3>
-            <span class="skills__number">90%</span>
-          </div>
-          <div class="skills__bar">
-            <span class="skills__percentage skills__html"></span>
-          </div>
-        </div>
-
-        <div class="skills__data">
-          <div class="skills__titles">
-            <h3 class="skills__name">CSS</h3>
-            <span class="skills__number">85%</span>
-          </div>
-          <div class="skills__bar">
-            <span class="skills__percentage skills__css"></span>
-          </div>
-        </div>
-
-        <div class="skills__data">
-          <div class="skills__titles">
-            <h3 class="skills__name">JavaScript Frontend</h3>
-            <span class="skills__number">80%</span>
-          </div>
-          <div class="skills__bar">
-            <span class="skills__percentage skills__js"></span>
-          </div>
-        </div>
-
-        <div class="skills__data">
-          <div class="skills__titles">
-            <h3 class="skills__name">Tailwind CSS</h3>
-            <span class="skills__number">55%</span>
-          </div>
-          <div class="skills__bar">
-            <span class="skills__percentage skills__tailwind"></span>
-          </div>
-        </div>
-
-        <div class="skills__data">
-          <div class="skills__titles">
-            <h3 class="skills__name">React</h3>
-            <span class="skills__number">70%</span>
-          </div>
-          <div class="skills__bar">
-            <span class="skills__percentage skills__react"></span>
-          </div>
-        </div>
-
-        <div class="skills__data">
-          <div class="skills__titles">
-            <h3 class="skills__name">Bootstrap</h3>
-            <span class="skills__number">80%</span>
-          </div>
-          <div class="skills__bar">
-            <span class="skills__percentage skills__bootstrap"></span>
-          </div>
-      </div>
-    </div>
-
-    <!-- Backend Developer Section -->
-      <br>
-     <br>
-     <br>
-    <div class="skills__content">
-      <div class="skills__header">
-        <i class="uil uil-server-network skills__icon"></i>
-        <div>
-          <h1 class="skills__title">Backend Developer</h1>
-          <span class="skills__subtitle">More than 2 years</span>
-        </div>
-        <i class="uil uil-angle-down skills__arrow"></i>
-      </div>
-
-      <div class="skills__list grid">
-        <div class="skills__data">
-          <div class="skills__titles">
-            <h3 class="skills__name">Node.js</h3>
-            <span class="skills__number">70%</span>
-          </div>
-          <div class="skills__bar">
-            <span class="skills__percentage skills__node"></span>
-          </div>
-        </div>
-
-        <div class="skills__data">
-          <div class="skills__titles">
-            <h3 class="skills__name">Laravel</h3>
-            <span class="skills__number">70%</span>
-          </div>
-          <div class="skills__bar">
-            <span class="skills__percentage skills__laravel"></span>
-          </div>
-        </div>
-
-        <div class="skills__data">
-          <div class="skills__titles">
-            <h3 class="skills__name">PHP</h3>
-            <span class="skills__number">75%</span>
-          </div>
-          <div class="skills__bar">
-            <span class="skills__percentage skills__php"></span>
-          </div>
-        </div>
-
-        <div class="skills__data">
-          <div class="skills__titles">
-            <h3 class="skills__name">SQL (MySQL, SQLite)</h3>
-            <span class="skills__number">75%</span>
-          </div>
-          <div class="skills__bar">
-            <span class="skills__percentage skills__sql"></span>
-          </div>
-        </div>
-
-        <!-- <div class="skills__data">
-          <div class="skills__titles">
-            <h3 class="skills__name">SQLite</h3>
-            <span class="skills__number">70%</span>
-          </div>
-          <div class="skills__bar">
-            <span class="skills__percentage skills__sqlite"></span>
-          </div>
-        </div> -->
-
-                <div class="skills__data">
-          <div class="skills__titles">
-            <h3 class="skills__name">JavaScript Backend</h3>
-            <span class="skills__number">60%</span>
-          </div>
-          <div class="skills__bar">
-            <span class="skills__percentage skills__backend_js"></span>
-          </div>
-        </div>
-      </div>
-    </div>
-
-  </div>
-</section>
-
-
-    <!--==================== QUALIFICATION ====================-->
-    <section class="qualification section">
-        <h2 class="section__title">Qualification</h2>
-        <span class="section__subtitle">My personal journey</span>
-        <h1>ㅤ</h1>
-        <div class="qualification__container container">
-            <div class="qualification__tabs">
-                <div class="qualification__button button--flex qualification__active" data-target="#education">
-                    <i class="uil uil-graduation-cap qualification__icon"></i>
-                    Education
-                </div>
-                <div class="qualification__button button--flex" data-target="#work">
-                    <i class="uil uil-briefcase-alt qualification__icon"></i>
-                    Work
-                </div>
-            </div>
-            <div class="qualification__sections">
-                <div class="qualification__content qualification__active" data-content id="education">
-                    <!-- Qualification Data -->
-                    <div class="qualification__data">
-                        <div>
-                            <h3 class="qualification__title">Software Engineering, UI/UX Designer</h3>
-                            <span class="qualification__subtitle">SMP BQ ISLAMIC BOARDING SCHOOL</span>
-                            <div class="qualification__calendar">
-                                <i class="uil uil-calendar-alt"></i>
-                                2023 - 2025
-                            </div>
-                        </div>
-                        <div>
-                            <span class="qualification__rounder"></span>
-                            <span class="qualification__line"></span>
-                        </div>
-                    </div>
-                    <div class="qualification__data">
-                        <div>
-                            <h3 class="qualification__title">Software Engineering</h3>
-                            <span class="qualification__subtitle">SMK IDN ISLAMIC BOARDING SCHOOL</span>
-                            <div class="qualification__calendar">
-                                <i class="uil uil-calendar-alt"></i>
-                                2025 - Present
-                            </div>
-                        </div>
-                        <div>
-                            <span class="qualification__rounder"></span>
-                            <span class="qualification__line"></span>
-                        </div>
-                    </div>
-                    <!-- Add more education data as needed -->
-                </div>
-                <div class="qualification__content" data-content id="work">
-                    <!-- Work Data -->
-                    <div class="qualification__data">
-                        <div></div>
-                        <div>
-                            <span class="qualification__rounder"></span>
-                            <span class="qualification__line"></span>
-                        </div>
-                        <div>
-                            <h3 class="qualification__title">Full Stack Developer</h3>
-                            <span class="qualification__subtitle">Markaz Dimsum</span>
-                            <div class="qualification__calendar">
-                                <i class="uil uil-calendar-alt"></i>
-                                2025 - Present
-                            </div>
-                        </div>
-                    </div>
-                    <!-- Add more work data as needed -->
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!--==================== PRESTATION ====================-->
-<section class="prestasi section glass" id="prestasi">
-  <h2 class="section__title">Achievements</h2>
-  <span class="section__subtitle">Accomplishments & Awards</span>
-  <ul class="section__list" style="max-width:600px;margin:2rem auto 0 auto;font-size:1.1rem;line-height:1.7;">
-    <li>Juz 30 Certification - NIBIIS</li>
-    <li>Juz 29 Certification - NIBIIS</li>
-    <li>Juz 27 Certification - NIBIIS</li>
-    <li>Juz 1 Certification - NIBIIS</li>
-    <li>Juz 2 Certification - NIBIIS</li>
-    <li>1st Honorable Mention in Futsal - Ibnu Majah 2023</li>
-    <li>Juz 29 Quran Memorization Ceremony - Arkan Islamic School</li>
-    <li>1st Honorable Mention in Futsal - Alchemist 2024</li>
-    <li>Juz 28 Tasmi' - BQ IBS</li>
-    <li>Juz 29 Tasmi' - BQ IBS</li>
-    <li>Juz 1 Tasmi' - BQ IBS</li>
-    <li>Participant - SEAMO (Southeast Asian Mathematical Olympiad) 2025</li>
-    <li>Participant - TIMO (Thailand International Mathematical Olympiad) 2024</li>
-    <li>BRILLIANT 2025 - SMA - INFORMATIKA - Mendali Perak </li>
-  </ul>
-</section>
-
-</section>
-
-
-
-    <!--==================== PORTFOLIO ====================-->
-    <section class="portfolio section glass" id="portfolio">
-        <h2 class="section__title">Portfolio</h2>
-        <span class="section__subtitle">Most recent work</span>
-        <h1>ㅤ</h1>
-        <div class="portfolio__container container swiper-container">
-            <div class="swiper-wrapper">
-                <div class="portfolio__content grid swiper-slide glass">
-                    <img src="assets/img/portfolio1.jpg" alt="" class="portfolio__img" />
-                    <div class="portfolio__data">
-                        <h3 class="portfolio__title">Markaz Dimsum</h3>
-                        <br>
-                        <p class="portfolio__description">Responsive website designed for all devices, featuring clean UI elements and smooth interactive animations.</p>
-                        <br>
-                        <a href="https://markaz-dimsum-alpha.vercel.app" class="button button--flex button--small portfolio__button">
-                            Demo
-                            <i class="uil uil-arrow-right button__icon"></i>
-                        </a>
-                    </div>
-                </div>
-                <div class="portfolio__content grid swiper-slide glass">
-                    <img src="assets/img/portfolio 2.png" alt="" class="portfolio__img" />
-                    <div class="portfolio__data">
-                        <h3 class="portfolio__title">Website Diniyyah</h3>
-                        <br>
-                        <p class="portfolio__description">This website stores and shares Diniyyah study notes from IDN IBS, making them easy to access and beneficial for students and the wider Muslim community.</p>
-                        <br>
-                        <a href="https://website-diniyyah.vercel.app/index.html" class="button button--flex button--small portfolio__button">
-                            Demo
-                            <i class="uil uil-arrow-right button__icon"></i>
-                        </a>
-                    </div>
-            </div>
-            <div class="swiper-button-next">
-                <i class="uil uil-angle-right-b swiper-portfolio-icon"></i>
-            </div>
-            <div class="swiper-button-prev">
-                <i class="uil uil-angle-left-b swiper-portfolio-icon"></i>
-            </div>
-            <div class="swiper-pagination"></div>
-        </div>
-    </section>
-        <!--==================== BUY WEBSITE ====================-->
-    <section class="buy section" id="buy">
-  <h2 class="section__title">Buy Website</h2>
-  <span class="section__subtitle">Get your own custom site</span>
-
-  <div class="buy__container container">
-    <div class="buy__content">
-      <h3 class="buy__title">Need a professional website?</h3>
-      <p class="buy__description">
-        I offer custom website design and development tailored to your needs. Whether for business, personal portfolio, or online store — I can help!
-      </p>
-      <a href="#contact" class="button button--flex">
-        Order Now <i class="uil uil-shopping-cart button__icon"></i>
-      </a>
-    </div>
-
-    <!-- <div class="buy__image">
-      <img src="assets/img/buy-website.png" alt="Buy Website" class="buy__img" />
-    </div>
-  </div> -->
-
-    <!--==================== PROJECT IN MIND ====================-->
-    <!-- <section class="project section">
-        <div class="project__bg">
-            <div class="project__container container grid">
-                <div class="project__data">
-                    <h2 class="project__title">You have a new project</h2>
-                    <p class="project__description">Contact me now and get a 30% discount on your new project.</p>
-                    <a href="#contact" class="button button--flex button--white">
-                        Contact Me
-                        <i class="uil uil-message project__icon button__icon"></i>
-                    </a>
-                </div>
-                <img src="assets/img/project.png" alt="" class="project__img">
-            </div>
-        </div>
-    </section> -->
-
-    <!--==================== TESTIMONIAL ====================-->
-    <!-- <section class="testimonial section">
-        <h2 class="section__title">Testimonial</h2>
-        <span class="section__subtitle">My client saying</span>
-        <div class="testimonial__container container swiper-container">
-            <div class="swiper-wrapper">
-                <div class="testimonial__content swiper-slide">
-                    <div class="testimonial__data">
-                        <div class="testimonial__header">
-                            <img src="assets/img/testimonial1.jpg" alt="" class="testimonial__img">
-                            <div>
-                                <h3 class="testimonial__name">Sara Smith</h3>
-                                <span class="testimonial__client">Client</span>
-                            </div>
-                        </div>
-                        <div>
-                            <i class="uil uil-star testimonial__icon-star"></i>
-                            <i class="uil uil-star testimonial__icon-star"></i>
-                            <i class="uil uil-star testimonial__icon-star"></i>
-                            <i class="uil uil-star testimonial__icon-star"></i>
-                            <i class="uil uil-star testimonial__icon-star"></i>
-                        </div>
-                    </div>
-                    <p class="testimonial__description">Rizki is a great developer, delivers on time and with high quality.</p>
-                </div>
-                 Add more testimonial__content as needed -->
-            </div>
-            <div class="swiper-pagination swiper-pagination-testimonial"></div>
-        </div>
-    </section> 
     
+    <!-- Background Effects -->
+    <div class="bg-grid"></div>
+    <div class="bg-glow"></div>
 
-    <!--==================== CONTACT ME ====================-->
-    <section class="contact section glass" id="contact">
-        <h2 class="section__title">Contact Me</h2>
-        <h1>ㅤ</h1>
-        <div class="contact__container container" style="display: flex; flex-wrap: wrap; gap: 2rem; justify-content: center; align-items: flex-start;">
-            <div style="flex:1 1 300px; min-width:260px; max-width:400px; background:rgba(255,255,255,0.15); border-radius:1.5rem; box-shadow:0 4px 24px rgba(0,0,0,0.08); padding:2rem 1.5rem; margin-bottom:2rem;">
-                <div class="contact__information animate__animated animate__fadeInLeft animate__delay-1s">
-                    <i class="uil uil-phone contact__icon"></i>
-                    <div>
-                        <h3 class="contact__title">Call Me Or Chat Me at Whatsapp</h3>
-                        <span class="contact__subtitle">+62 895-3503-99990</span><br>
-                        <span class="contact__subtitle">+62 8977-8382-1691</span>
+    <!--==================== LOADING SCREEN (TERMINAL BOOT) ====================-->
+    <div id="loading-screen">
+        <div style="width: 100%; max-width: 400px;">
+            <div class="boot-text">> system_boot --init</div>
+            <div class="boot-text">> loading_portfolio_data...</div>
+            <div class="boot-text">> user: Rizki | role: FullStack_Dev</div>
+            <div class="boot-text">> access_granted.</div>
+            <div class="loading-bar"><div class="loading-progress"></div></div>
+        </div>
+    </div>
+
+    <!--==================== HEADER (DYNAMIC ISLAND) ====================-->
+    <header class="header" id="header">
+        <nav class="nav container">
+            <a href="#home" class="nav__logo"><i class="uil uil-brackets-curly"></i> Rizki</a>
+
+            <div class="nav__menu" id="nav-menu">
+                <ul class="nav__list">
+                    <li><a href="#home" class="nav__link"><span class="tag">&lt;</span><span class="lang" data-en="Home" data-id="Beranda">Beranda</span><span class="tag">/&gt;</span></a></li>
+                    <li><a href="#about" class="nav__link"><span class="tag">&lt;</span><span class="lang" data-en="About" data-id="Tentang">Tentang</span><span class="tag">/&gt;</span></a></li>
+                    <li><a href="#skills" class="nav__link"><span class="tag">&lt;</span><span class="lang" data-en="Skills" data-id="Keahlian">Keahlian</span><span class="tag">/&gt;</span></a></li>
+                    <li><a href="#portfolio" class="nav__link"><span class="tag">&lt;</span><span class="lang" data-en="Work" data-id="Karya">Karya</span><span class="tag">/&gt;</span></a></li>
+                    <li><a href="#contact" class="nav__link"><span class="tag">&lt;</span><span class="lang" data-en="Contact" data-id="Kontak">Kontak</span><span class="tag">/&gt;</span></a></li>
+                </ul>
+                <i class="uil uil-times nav__close" id="nav-close"></i>
+            </div>
+
+            <div class="nav__btns">
+                <button class="lang-btn" id="lang-btn">EN</button>
+                <i class="uil uil-moon change-theme" id="theme-button"></i>
+                <div class="nav__toggle" id="nav-toggle">
+                    <i class="uil uil-apps"></i>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <!--==================== MAIN ====================-->
+    <main class="main">
+        
+        <!--==================== HOME ====================-->
+        <section class="home section" id="home">
+            <div class="home__container container grid">
+                <div class="home__data reveal reveal-delay-1">
+                    <span class="home__greeting"><i class="uil uil-terminal"></i> <span class="lang" data-en="Hello World," data-id="Halo Dunia,">Halo Dunia,</span></span>
+                    <h1 class="home__title lang" data-en="I'm <span>Rizki</span>." data-id="Saya <span>Rizki</span>.">Saya <span>Rizki</span>.</h1>
+                    
+                    <div class="home__subtitle-wrapper">
+                        <span class="home__subtitle" id="typewriter"></span><span class="cursor"></span>
+                    </div>
+
+                    <p class="home__description lang" 
+                       data-en="I build responsive, modern, and user-friendly digital experiences. Constantly learning, breaking things, and fixing them to create better web solutions." 
+                       data-id="Saya membangun pengalaman digital yang responsif, modern, dan mudah digunakan. Terus belajar, mencoba hal baru, dan menciptakan solusi web yang lebih baik.">
+                        Saya membangun pengalaman digital yang responsif, modern, dan mudah digunakan. Terus belajar, mencoba hal baru, dan menciptakan solusi web yang lebih baik.
+                    </p>
+                    
+                    <div class="home__buttons">
+                        <a href="#portfolio" class="button button--primary">
+                            <i class="uil uil-folder-network"></i> <span class="lang" data-en="View Work" data-id="Lihat Karya">Lihat Karya</span>
+                        </a>
+                        <a href="#contact" class="button">
+                            <i class="uil uil-envelope-alt"></i> <span class="lang" data-en="Contact Me" data-id="Hubungi">Hubungi</span>
+                        </a>
+                    </div>
+
+                    <div class="home__social">
+                        <a href="https://github.com/mrizzzz97" target="_blank" class="home__social-icon"><i class="uil uil-github-alt"></i></a>
+                        <a href="https://www.linkedin.com/in/muhammad-rizki-suryapratama" target="_blank" class="home__social-icon"><i class="uil uil-linkedin"></i></a>
+                        <a href="https://www.instagram.com/m.rizzzz.97/" target="_blank" class="home__social-icon"><i class="uil uil-instagram"></i></a>
                     </div>
                 </div>
-                <div class="contact__information animate__animated animate__fadeInLeft animate__delay-2s">
-                    <i class="uil uil-envelope contact__icon"></i>
-                    <div>
-                        <h3 class="contact__title">Email</h3>
-                        <span class="contact__subtitle">rizkisuryapratama2020@gmail.com</span>
-                    </div>
-                </div>
-                <div class="contact__information animate__animated animate__fadeInLeft animate__delay-3s">
-                    <i class="uil uil-map-marker contact__icon"></i>
-                    <div>
-                        <h3 class="contact__title">Location</h3>
-                        <span class="contact__subtitle">Bekasi, Indonesia</span>
+
+                <div class="home__img-wrapper reveal reveal-delay-2">
+                    <div class="home__img-border">
+                        <div class="home__img">
+                            <img src="assets/img/perfil.png" alt="Rizki Profile" onerror="this.src='https://ui-avatars.com/api/?name=Rizki&background=18181b&color=9d4edd&size=512'"/>
+                        </div>
                     </div>
                 </div>
             </div>
-            <form action="" class="contact__form animate__animated animate__fadeInUp animate__delay-2s" style="flex:2 1 340px; min-width:260px; max-width:500px; background:rgba(255,255,255,0.25); border-radius:1.5rem; box-shadow:0 4px 24px rgba(0,0,0,0.10); padding:2rem 1.5rem;">
-                <div class="contact__inputs" style="display: flex; gap: 1rem; flex-wrap: wrap;">
-                    <div class="contact__content" style="flex:1 1 150px; min-width:120px;">
-                        <label for="name" class="contact__label">Name</label>
-                        <input type="text" id="name" class="contact__input" placeholder="Your Name" required style="width:100%; padding:0.75rem 1rem; border-radius:0.75rem; border:1px solid #e0e0e0; background:rgba(255,255,255,0.7); margin-top:0.3rem; margin-bottom:0.7rem; transition:box-shadow 0.2s, border 0.2s; box-shadow:0 2px 8px rgba(0,0,0,0.03);">
-                    </div>
-                    <div class="contact__content" style="flex:1 1 150px; min-width:120px;">
-                        <label for="email" class="contact__label">Email</label>
-                        <input type="email" id="email" class="contact__input" placeholder="your@email.com" required style="width:100%; padding:0.75rem 1rem; border-radius:0.75rem; border:1px solid #e0e0e0; background:rgba(255,255,255,0.7); margin-top:0.3rem; margin-bottom:0.7rem; transition:box-shadow 0.2s, border 0.2s; box-shadow:0 2px 8px rgba(0,0,0,0.03);">
-                    </div>
-                </div>
-                <div class="contact__content">
-                    <label for="project" class="contact__label">Project</label>
-                    <input type="text" id="project" class="contact__input" placeholder="Project Title" required style="width:100%; padding:0.75rem 1rem; border-radius:0.75rem; border:1px solid #e0e0e0; background:rgba(255,255,255,0.7); margin-top:0.3rem; margin-bottom:0.7rem; transition:box-shadow 0.2s, border 0.2s; box-shadow:0 2px 8px rgba(0,0,0,0.03);">
-                </div>
-                <div class="contact__content">
-                    <label for="message" class="contact__label">Message</label>
-                    <textarea id="message" cols="0" rows="7" class="contact__input" placeholder="Describe your project" required style="width:100%; padding:0.75rem 1rem; border-radius:0.75rem; border:1px solid #e0e0e0; background:rgba(255,255,255,0.7); margin-top:0.3rem; margin-bottom:0.7rem; transition:box-shadow 0.2s, border 0.2s; box-shadow:0 2px 8px rgba(0,0,0,0.03);"></textarea>
-                </div>
-                <div style="text-align:right; margin-top:1rem;">
-                    <button type="submit" class="button button--flex animate__animated animate__pulse animate__infinite" style="padding:0.8rem 2.2rem; border-radius:1rem; font-size:1.1rem; background:linear-gradient(90deg,#6a0dad  0%,#e0e0e0 250%); color:#fff; box-shadow:0 2px 12px rgba(79,140,255,0.15); border:none; transition:background 0.2s, box-shadow 0.2s;">
-                        Send Message (By Gmail Or WhatsApp)
-                        <i class="uil uil-message button__icon"></i>
-                    </button>
-                </div>
-            </form>
-        </div>
-    </section>
-</main>
-<br>
-<br>
+        </section>
 
-  <!--==================== FOOTER ====================-->
-<footer class="custom-footer">
-  <div class="footer-wrapper">
-    <div class="footer-left">
-      <h2 class="footer-logo">Rizki<span>.</span></h2>
-      <p class="footer-text">
-        Thank you for visiting my portfolio. Feel free to reach out for any collaboration or project ideas!
-      </p>
-    </div>
-    <div class="footer-right">
-      <div class="footer-links-group">
-        <h4 class="footer-heading">Menu</h4>
-        <ul class="footer-links">
-          <li><a href="#home">Home</a></li>
-          <li><a href="#about">About</a></li>
-          <li><a href="#skills">Skills</a></li>
-          <li><a href="#portfolio">Portfolio</a></li>
-          <li><a href="#contact">Contact</a></li>
-        </ul>
-      </div>
-      <div class="footer-links-group">
-        <h4 class="footer-heading">Info</h4>
-        <ul class="footer-links">
-          <li><a href="#">Privacy Policy</a></li>
-          <li><a href="#">Terms & Conditions</a></li>
-          <li><a href="#">Support</a></li>
-        </ul>
-      </div>
-    </div>
-  </div>
-  <div class="footer-bottom">
-    <p>&copy; 2025 Rizki Portfolio Website. All rights reserved.</p>
-  </div>
-</footer>
-<script src="assets/js/swiper-bundle.min.js"></script>
-<script src="assets/js/main.js"></script>
-<script>
-</script>
+        <!--==================== ABOUT ====================-->
+        <section class="about section" id="about">
+            <h2 class="section__title reveal"><span class="tag-color">&lt;</span><span class="lang" data-en="AboutMe" data-id="TentangSaya">TentangSaya</span><span class="tag-color"> /&gt;</span></h2>
+            <span class="section__subtitle reveal lang" data-en="System Configuration" data-id="Konfigurasi Sistem">Konfigurasi Sistem</span>
+            
+            <div class="about__container container grid">
+                <div class="about__terminal terminal-box reveal reveal-delay-1">
+                    <div class="terminal-header">
+                        <div class="dot dot-red"></div><div class="dot dot-yellow"></div><div class="dot dot-green"></div>
+                        <span class="terminal-title">about_rizki.js</span>
+                    </div>
+                    <div style="padding: 1.5rem;">
+                        <div class="about__code-block">
+                            <span class="code-keyword">const</span> rizki = {<br>
+                            &nbsp;&nbsp;role: <span class="code-string">'Full Stack Developer'</span>,<br>
+                            &nbsp;&nbsp;status: <span class="code-string">'Learning & Building'</span>,<br>
+                            &nbsp;&nbsp;passion: [<span class="code-string">'Web Dev'</span>, <span class="code-string">'UI/UX'</span>],<br>
+                            &nbsp;&nbsp;<span class="code-function">sayHi</span>() {<br>
+                            &nbsp;&nbsp;&nbsp;&nbsp;<span class="code-keyword">return</span> <span class="code-string">'Always ready to code!'</span>;<br>
+                            &nbsp;&nbsp;}<br>
+                            };
+                        </div>
+                    </div>
+                </div>
+
+                <div class="about__data reveal reveal-delay-2">
+                    <p class="about__text lang" 
+                       data-en="Beginner web developer with a strong interest in modern web technologies. I enjoy solving complex problems and turning ideas into functional, beautiful web applications. I believe in learning by building."
+                       data-id="Pengembang web dengan minat kuat pada teknologi modern. Saya suka memecahkan masalah kompleks dan mengubah ide menjadi aplikasi web yang fungsional dan indah. Saya percaya pada prinsip 'belajar dengan praktik langsung'.">
+                       Pengembang web dengan minat kuat pada teknologi modern. Saya suka memecahkan masalah kompleks dan mengubah ide menjadi aplikasi web yang fungsional dan indah. Saya percaya pada prinsip 'belajar dengan praktik langsung'.
+                    </p>
+                    
+                    <div class="about__info">
+                        <div>
+                            <span class="about__info-title">05+</span>
+                            <span class="about__info-name lang" data-en="Years<br>Exp" data-id="Tahun<br>Pengalaman">Tahun<br>Pengalaman</span>
+                        </div>
+                        <div>
+                            <span class="about__info-title">45+</span>
+                            <span class="about__info-name lang" data-en="Projects<br>Built" data-id="Proyek<br>Selesai">Proyek<br>Selesai</span>
+                        </div>
+                        <div>
+                            <span class="about__info-title">03</span>
+                            <span class="about__info-name lang" data-en="Companies<br>Worked" data-id="Perusahaan<br>Klien">Perusahaan<br>Klien</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!--==================== SKILLS ====================-->
+        <section class="skills section" id="skills">
+            <h2 class="section__title reveal"><span class="tag-color">&lt;</span><span class="lang" data-en="TechStack" data-id="KeahlianTeknis">KeahlianTeknis</span><span class="tag-color"> /&gt;</span></h2>
+            <span class="section__subtitle reveal lang" data-en="Development Arsenal" data-id="Perangkat Pengembangan">Perangkat Pengembangan</span>
+            
+            <div class="skills__container container grid">
+                <!-- UI/UX -->
+                <div class="skills__content terminal-box reveal reveal-delay-1">
+                    <div class="terminal-header">
+                        <div class="dot dot-red"></div><div class="dot dot-yellow"></div><div class="dot dot-green"></div>
+                        <span class="terminal-title">design_tools.sh</span>
+                    </div>
+                    <div style="padding: 1.5rem;">
+                        <div class="skills__header">
+                            <i class="uil uil-swatchbook"></i>
+                            <div>
+                                <h3 class="skills__title">UI/UX Design</h3>
+                                <span class="code-text">> 4 Years</span>
+                            </div>
+                        </div>
+                        <div class="skills__list">
+                            <div class="skills__data">
+                                <div class="skills__titles"><span>Canva / Capcut</span><span>90%</span></div>
+                                <div class="skills__bar"><span class="skills__percentage" style="width: 90%"></span></div>
+                            </div>
+                            <div class="skills__data">
+                                <div class="skills__titles"><span>Photoshop</span><span>80%</span></div>
+                                <div class="skills__bar"><span class="skills__percentage" style="width: 80%"></span></div>
+                            </div>
+                            <div class="skills__data">
+                                <div class="skills__titles"><span>Framer</span><span>70%</span></div>
+                                <div class="skills__bar"><span class="skills__percentage" style="width: 70%"></span></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Frontend -->
+                <div class="skills__content terminal-box reveal reveal-delay-2">
+                    <div class="terminal-header">
+                        <div class="dot dot-red"></div><div class="dot dot-yellow"></div><div class="dot dot-green"></div>
+                        <span class="terminal-title">frontend.jsx</span>
+                    </div>
+                    <div style="padding: 1.5rem;">
+                        <div class="skills__header">
+                            <i class="uil uil-brackets-curly"></i>
+                            <div>
+                                <h3 class="skills__title">Frontend Dev</h3>
+                                <span class="code-text">> 3 Years</span>
+                            </div>
+                        </div>
+                        <div class="skills__list">
+                            <div class="skills__data">
+                                <div class="skills__titles"><span>HTML & CSS</span><span>90%</span></div>
+                                <div class="skills__bar"><span class="skills__percentage" style="width: 90%"></span></div>
+                            </div>
+                            <div class="skills__data">
+                                <div class="skills__titles"><span>JavaScript / React</span><span>75%</span></div>
+                                <div class="skills__bar"><span class="skills__percentage" style="width: 75%"></span></div>
+                            </div>
+                            <div class="skills__data">
+                                <div class="skills__titles"><span>Tailwind / Bootstrap</span><span>70%</span></div>
+                                <div class="skills__bar"><span class="skills__percentage" style="width: 70%"></span></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Backend -->
+                <div class="skills__content terminal-box reveal reveal-delay-3">
+                    <div class="terminal-header">
+                        <div class="dot dot-red"></div><div class="dot dot-yellow"></div><div class="dot dot-green"></div>
+                        <span class="terminal-title">backend.php</span>
+                    </div>
+                    <div style="padding: 1.5rem;">
+                        <div class="skills__header">
+                            <i class="uil uil-server-network"></i>
+                            <div>
+                                <h3 class="skills__title">Backend Dev</h3>
+                                <span class="code-text">> 2 Years</span>
+                            </div>
+                        </div>
+                        <div class="skills__list">
+                            <div class="skills__data">
+                                <div class="skills__titles"><span>PHP & Laravel</span><span>75%</span></div>
+                                <div class="skills__bar"><span class="skills__percentage" style="width: 75%"></span></div>
+                            </div>
+                            <div class="skills__data">
+                                <div class="skills__titles"><span>SQL (MySQL)</span><span>75%</span></div>
+                                <div class="skills__bar"><span class="skills__percentage" style="width: 75%"></span></div>
+                            </div>
+                            <div class="skills__data">
+                                <div class="skills__titles"><span>Node.js</span><span>70%</span></div>
+                                <div class="skills__bar"><span class="skills__percentage" style="width: 70%"></span></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!--==================== QUALIFICATION & ACHIEVEMENTS ====================-->
+        <section class="section container grid" style="grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 4rem;">
+            <!-- Qualification -->
+            <div class="qual__container reveal">
+                <h2 class="section__title" style="text-align: left;"><span class="tag-color">&lt;</span><span class="lang" data-en="Journey" data-id="Perjalanan">Perjalanan</span><span class="tag-color"> /&gt;</span></h2>
+                <div class="qual__tabs" style="justify-content: flex-start; margin-bottom: 2rem;">
+                    <div class="qual__btn active" data-target="#education">
+                        <i class="uil uil-graduation-cap"></i> <span class="lang" data-en="Education" data-id="Pendidikan">Pendidikan</span>
+                    </div>
+                    <div class="qual__btn" data-target="#work">
+                        <i class="uil uil-briefcase-alt"></i> <span class="lang" data-en="Work" data-id="Pekerjaan">Pekerjaan</span>
+                    </div>
+                </div>
+
+                <div class="qual__sections">
+                    <div class="qual__content active" id="education">
+                        <div class="timeline">
+                            <div class="timeline-item">
+                                <h3 class="qual__title">Software Engineering</h3>
+                                <span class="qual__subtitle">SMK IDN IBS</span>
+                                <span class="qual__cal"><i class="uil uil-calendar-alt"></i> 2025 - Present</span>
+                            </div>
+                            <div class="timeline-item">
+                                <h3 class="qual__title">Software Engineering, UI/UX</h3>
+                                <span class="qual__subtitle">SMP BQ IBS</span>
+                                <span class="qual__cal"><i class="uil uil-calendar-alt"></i> 2023 - 2025</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="qual__content" id="work">
+                        <div class="timeline">
+                            <div class="timeline-item">
+                                <h3 class="qual__title">Full Stack Developer</h3>
+                                <span class="qual__subtitle">Markaz Dimsum</span>
+                                <span class="qual__cal"><i class="uil uil-calendar-alt"></i> 2025 - Present</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Achievements -->
+            <div class="prestasi__container reveal reveal-delay-2">
+                <h2 class="section__title" style="text-align: left;"><span class="tag-color">&lt;</span><span class="lang" data-en="Awards" data-id="Penghargaan">Penghargaan</span><span class="tag-color"> /&gt;</span></h2>
+                <br>
+                <div class="achieve-grid">
+                    <div class="achieve-card">
+                        <div class="achieve-icon"><i class="uil uil-award"></i></div>
+                        <div class="achieve-text lang" data-en="Juz 30-27, 2, 1 Certification & Tasmi'" data-id="Sertifikasi & Tasmi' Juz 30-27, 2, 1">Sertifikasi & Tasmi' Juz 30-27, 2, 1</div>
+                    </div>
+                    <div class="achieve-card">
+                        <div class="achieve-icon"><i class="uil uil-medal"></i></div>
+                        <div class="achieve-text lang" data-en="1st Honorable Mention Futsal (2023 & 2024)" data-id="Juara Harapan 1 Futsal (2023 & 2024)">Juara Harapan 1 Futsal (2023 & 2024)</div>
+                    </div>
+                    <div class="achieve-card">
+                        <div class="achieve-icon"><i class="uil uil-asterisk"></i></div>
+                        <div class="achieve-text lang" data-en="Participant - SEAMO & TIMO Olympiad" data-id="Peserta Olimpiade SEAMO & TIMO">Peserta Olimpiade SEAMO & TIMO</div>
+                    </div>
+                    <div class="achieve-card">
+                        <div class="achieve-icon"><i class="uil uil-star"></i></div>
+                        <div class="achieve-text lang" data-en="BRILLIANT 2025 - Informatics - Silver Medal" data-id="BRILLIANT 2025 - Informatika - Medali Perak">BRILLIANT 2025 - Informatika - Medali Perak</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!--==================== PORTFOLIO ====================-->
+        <section class="portfolio section" id="portfolio">
+            <h2 class="section__title reveal"><span class="tag-color">&lt;</span><span class="lang" data-en="DeployedWork" data-id="KaryaRilis">KaryaRilis</span><span class="tag-color"> /&gt;</span></h2>
+            <span class="section__subtitle reveal lang" data-en="Recent Commits" data-id="Pembaruan Terbaru">Pembaruan Terbaru</span>
+            
+            <div class="portfolio__container container swiper-container reveal reveal-delay-1">
+                <div class="swiper-wrapper">
+                    <div class="portfolio__card terminal-box swiper-slide">
+                        <div class="terminal-header" style="background: transparent; padding: 0.5rem 0; margin-bottom: 0.5rem;">
+                            <div class="dot dot-red"></div><div class="dot dot-yellow"></div><div class="dot dot-green"></div>
+                        </div>
+                        <div class="portfolio__img-wrapper">
+                            <img src="assets/img/portfolio1.jpg" alt="Markaz Dimsum" class="portfolio__img" onerror="this.src='https://images.unsplash.com/photo-1555939594-58d7cb561ad1?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80'"/>
+                        </div>
+                        <div>
+                            <div class="portfolio__tags">
+                                <span class="p-tag">React</span><span class="p-tag">Tailwind</span>
+                            </div>
+                            <h3 class="portfolio__title">Markaz Dimsum</h3>
+                            <p class="portfolio__desc lang" data-en="Responsive website designed for all devices, featuring clean UI elements and smooth interactive animations." data-id="Website responsif untuk berbagai perangkat, dengan elemen UI bersih dan animasi interaktif yang halus.">Website responsif untuk berbagai perangkat, dengan elemen UI bersih dan animasi interaktif yang halus.</p>
+                            <a href="https://markaz-dimsum-alpha.vercel.app" target="_blank" class="button">
+                                <i class="uil uil-external-link-alt"></i> Live Demo 
+                            </a>
+                        </div>
+                    </div>
+                    <div class="portfolio__card terminal-box swiper-slide">
+                        <div class="terminal-header" style="background: transparent; padding: 0.5rem 0; margin-bottom: 0.5rem;">
+                            <div class="dot dot-red"></div><div class="dot dot-yellow"></div><div class="dot dot-green"></div>
+                        </div>
+                        <div class="portfolio__img-wrapper">
+                            <img src="assets/img/portfolio 2.png" alt="Website Diniyyah" class="portfolio__img" onerror="this.src='https://images.unsplash.com/photo-1517694712202-14dd9538aa97?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80'"/>
+                        </div>
+                        <div>
+                            <div class="portfolio__tags">
+                                <span class="p-tag">HTML</span><span class="p-tag">CSS</span><span class="p-tag">JS</span>
+                            </div>
+                            <h3 class="portfolio__title">Website Diniyyah</h3>
+                            <p class="portfolio__desc lang" data-en="This website stores and shares Diniyyah study notes from IDN IBS, making them easy to access." data-id="Website ini menyimpan dan membagikan catatan kajian Diniyyah dari IDN IBS agar mudah diakses.">Website ini menyimpan dan membagikan catatan kajian Diniyyah dari IDN IBS agar mudah diakses.</p>
+                            <a href="https://website-diniyyah.vercel.app/index.html" target="_blank" class="button">
+                                <i class="uil uil-external-link-alt"></i> Live Demo 
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="swiper-pagination" style="bottom: 0;"></div>
+            </div>
+        </section>
+
+        <!--==================== CONTACT ====================-->
+        <section class="contact section" id="contact">
+            <h2 class="section__title reveal"><span class="tag-color">&lt;</span><span class="lang" data-en="ContactMe" data-id="HubungiSaya">HubungiSaya</span><span class="tag-color"> /&gt;</span></h2>
+            <span class="section__subtitle reveal lang" data-en="Init Connection" data-id="Mulai Koneksi">Mulai Koneksi</span>
+            
+            <div class="contact__container container grid">
+                <div class="contact__info-wrap reveal reveal-delay-1">
+                    <div class="contact__card">
+                        <i class="uil uil-whatsapp contact__card-icon"></i>
+                        <div>
+                            <h3 class="contact__card-title">WhatsApp</h3>
+                            <div class="contact__card-data">> +62 877-8382-1691</div>
+                            <div class="contact__card-data">> +62 895-3503-99990</div>
+                        </div>
+                    </div>
+                    <div class="contact__card">
+                        <i class="uil uil-envelope contact__card-icon"></i>
+                        <div>
+                            <h3 class="contact__card-title">Email</h3>
+                            <div class="contact__card-data">> rizkisuryapratama2020<br>@gmail.com</div>
+                        </div>
+                    </div>
+                    <div class="contact__card">
+                        <i class="uil uil-map-marker contact__card-icon"></i>
+                        <div>
+                            <h3 class="contact__card-title lang" data-en="Location" data-id="Lokasi">Lokasi</h3>
+                            <div class="contact__card-data">> Bekasi, Indonesia</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="terminal-box reveal reveal-delay-2">
+                    <div class="terminal-header">
+                        <div class="dot dot-red"></div><div class="dot dot-yellow"></div><div class="dot dot-green"></div>
+                        <span class="terminal-title">send_message.sh</span>
+                    </div>
+                    <form class="contact__form" id="whatsapp-form">
+                        <div class="form-grid">
+                            <div class="form-group">
+                                <label class="lang" data-en="Name" data-id="Nama">Nama</label>
+                                <input type="text" id="name" class="contact__input" required>
+                            </div>
+                            <div class="form-group">
+                                <label>Email</label>
+                                <input type="email" id="email" class="contact__input" required>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="lang" data-en="Project" data-id="Proyek">Proyek</label>
+                            <input type="text" id="project" class="contact__input" required>
+                        </div>
+                        <div class="form-group">
+                            <label class="lang" data-en="Message" data-id="Pesan">Pesan</label>
+                            <textarea id="message" cols="0" rows="4" class="contact__input" required></textarea>
+                        </div>
+                        <button type="submit" class="button button--primary" style="width: 100%;">
+                            <i class="uil uil-message"></i> <span class="lang" data-en="Execute (Send via WA)" data-id="Eksekusi (Kirim via WA)">Eksekusi (Kirim via WA)</span>
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!--==================== FOOTER ====================-->
+    <footer class="footer">
+        <div class="footer__container container grid">
+            <div>
+                <a href="#" class="footer__logo"><i class="uil uil-brackets-curly"></i> Rizki</a>
+                <p class="lang" data-en="Thank you for visiting. Let's build something amazing together." data-id="Terima kasih telah berkunjung. Mari bangun sesuatu yang luar biasa." style="color:var(--text-color-light); max-width: 250px; font-size: 0.9rem;">
+                    Terima kasih telah berkunjung. Mari bangun sesuatu yang luar biasa.
+                </p>
+            </div>
+            <div>
+                <ul class="footer__links">
+                    <li><a href="#home" class="footer__link lang" data-en="> Home" data-id="> Beranda">> Beranda</a></li>
+                    <li><a href="#about" class="footer__link lang" data-en="> About" data-id="> Tentang">> Tentang</a></li>
+                    <li><a href="#portfolio" class="footer__link lang" data-en="> Projects" data-id="> Proyek">> Proyek</a></li>
+                </ul>
+            </div>
+            <div>
+                <div class="footer__socials">
+                    <a href="https://github.com/mrizzzz97" target="_blank" class="footer__social"><i class="uil uil-github-alt"></i></a>
+                    <a href="https://www.linkedin.com/in/muhammad-rizki-suryapratama" target="_blank" class="footer__social"><i class="uil uil-linkedin"></i></a>
+                    <a href="https://www.instagram.com/m.rizzzz.97/" target="_blank" class="footer__social"><i class="uil uil-instagram"></i></a>
+                </div>
+            </div>
+        </div>
+        <p class="footer__copy">/* &copy; 2025 Rizki Portfolio. Compiled successfully. */</p>
+    </footer>
+
+    <!--==================== JAVASCRIPT ====================-->
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+    <script>
+        /*========== TERMINAL BOOT LOADING SCREEN ==========*/
+        window.addEventListener('load', () => {
+            const loader = document.getElementById('loading-screen');
+            setTimeout(() => {
+                loader.style.opacity = '0';
+                setTimeout(() => { 
+                    loader.style.visibility = 'hidden'; 
+                    startTypewriter(); // Start typing effect after load
+                }, 800);
+            }, 2500); // 2.5 seconds fake booting process
+        });
+
+        /*========== TYPEWRITER EFFECT ==========*/
+        const typeTextEn = "Beginner Full Stack Developer | Freelancer";
+        const typeTextId = "Developer Full Stack Pemula | Freelancer";
+        let textIndex = 0;
+        let isTyping = false;
+
+        function startTypewriter() {
+            if(isTyping) return;
+            isTyping = true;
+            const target = document.getElementById('typewriter');
+            target.innerHTML = '';
+            textIndex = 0;
+            const currentLang = localStorage.getItem('selected-lang') || 'id';
+            const textToType = currentLang === 'en' ? typeTextEn : typeTextId;
+
+            function type() {
+                if (textIndex < textToType.length) {
+                    target.innerHTML += textToType.charAt(textIndex);
+                    textIndex++;
+                    setTimeout(type, 50); // Typing speed
+                } else {
+                    isTyping = false;
+                }
+            }
+            type();
+        }
+
+        /*========== DYNAMIC ISLAND HEADER ==========*/
+        function scrollHeader(){
+            const header = document.getElementById('header');
+            if(this.scrollY >= 50) header.classList.add('scrolled'); 
+            else header.classList.remove('scrolled');
+        }
+        window.addEventListener('scroll', scrollHeader);
+
+        /*========== MENU MOBILE ==========*/
+        const navMenu = document.getElementById('nav-menu'),
+              navToggle = document.getElementById('nav-toggle'),
+              navClose = document.getElementById('nav-close');
+
+        if(navToggle) navToggle.addEventListener('click', () => { navMenu.classList.add('show-menu'); });
+        if(navClose) navClose.addEventListener('click', () => { navMenu.classList.remove('show-menu'); });
+        document.querySelectorAll('.nav__link').forEach(n => n.addEventListener('click', () => { navMenu.classList.remove('show-menu'); }));
+
+        /*========== INTERSECTION OBSERVER (SMOOTH REVEAL) ==========*/
+        const revealElements = document.querySelectorAll('.reveal');
+        const revealOptions = { threshold: 0.1, rootMargin: "0px 0px -50px 0px" };
+        
+        const revealOnScroll = new IntersectionObserver(function(entries, observer) {
+            entries.forEach(entry => {
+                if(!entry.isIntersecting) return;
+                entry.target.classList.add('active');
+                observer.unobserve(entry.target);
+            });
+        }, revealOptions);
+
+        revealElements.forEach(el => revealOnScroll.observe(el));
+
+        /*========== DARK / LIGHT THEME ==========*/
+        const themeButton = document.getElementById('theme-button');
+        const lightTheme = 'light-theme';
+        const iconTheme = 'uil-sun';
+
+        const selectedTheme = localStorage.getItem('selected-theme');
+        const selectedIcon = localStorage.getItem('selected-icon');
+
+        if (selectedTheme) {
+            document.body.classList[selectedTheme === 'light' ? 'add' : 'remove'](lightTheme);
+            themeButton.classList[selectedIcon === 'uil-sun' ? 'add' : 'remove'](iconTheme);
+        }
+
+        themeButton.addEventListener('click', () => {
+            document.body.classList.toggle(lightTheme);
+            themeButton.classList.toggle(iconTheme);
+            localStorage.setItem('selected-theme', document.body.classList.contains(lightTheme) ? 'light' : 'dark');
+            localStorage.setItem('selected-icon', themeButton.classList.contains(iconTheme) ? 'uil-sun' : 'uil-moon');
+        });
+
+        /*========== BILINGUAL TOGGLE ==========*/
+        const langBtn = document.getElementById('lang-btn');
+        const langElements = document.querySelectorAll('.lang');
+        let currentLang = localStorage.getItem('selected-lang') || 'id';
+
+        const updateLang = () => {
+            langElements.forEach(el => { el.innerHTML = el.getAttribute(`data-${currentLang}`); });
+            langBtn.innerText = currentLang === 'id' ? 'EN' : 'ID';
+            if(!isTyping && document.getElementById('loading-screen').style.visibility === 'hidden') {
+                startTypewriter(); // Retype subtitle on lang change
+            }
+        };
+
+        updateLang();
+        langBtn.addEventListener('click', () => {
+            currentLang = currentLang === 'id' ? 'en' : 'id';
+            localStorage.setItem('selected-lang', currentLang);
+            updateLang();
+        });
+
+        /*========== QUALIFICATION TABS ==========*/
+        const tabs = document.querySelectorAll('.qual__btn'),
+              tabContents = document.querySelectorAll('.qual__content');
+
+        tabs.forEach(tab => {
+            tab.addEventListener('click', () => {
+                const target = document.querySelector(tab.dataset.target);
+                tabContents.forEach(tc => tc.classList.remove('active'));
+                target.classList.add('active');
+                tabs.forEach(t => t.classList.remove('active'));
+                tab.classList.add('active');
+            });
+        });
+
+        /*========== PORTFOLIO SWIPER ==========*/
+        let swiperPortfolio = new Swiper('.portfolio__container', {
+            cssMode: true, loop: true,
+            pagination: { el: '.swiper-pagination', clickable: true },
+            mousewheel: true, keyboard: true,
+            spaceBetween: 24,
+            breakpoints: { 768: { slidesPerView: 2 } }
+        });
+
+        /*========== WHATSAPP FORM ==========*/
+        const form = document.getElementById('whatsapp-form');
+        form.addEventListener('submit', function(e) {
+            e.preventDefault();
+            const name = document.getElementById('name').value;
+            const email = document.getElementById('email').value;
+            const project = document.getElementById('project').value;
+            const message = document.getElementById('message').value;
+
+            const targetPhone = "6287783821691";
+            const waMessage = `Halo Rizki, saya ${name}.%0A%0A*Email:* ${email}%0A*Projek:* ${project}%0A*Pesan:* ${message}`;
+            
+            window.open(`https://wa.me/${targetPhone}?text=${waMessage}`, '_blank');
+        });
+    </script>
 </body>
 </html>
