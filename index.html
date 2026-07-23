@@ -1,40 +1,726 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="id">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Maintenance</title>
-  <meta name="description" content="Portfolio sedang dalam perbaikan">
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
-  <style>
-    *{margin:0;padding:0;box-sizing:border-box}
-    body{font-family:'Poppins',sans-serif;background:linear-gradient(135deg,#111827,#1e3a8a);color:#fff;display:flex;align-items:center;justify-content:center;height:100vh;text-align:center;padding:20px;overflow:hidden}
-    .container{max-width:650px;background:rgba(255,255,255,0.06);padding:50px;border-radius:25px;box-shadow:0 8px 35px rgba(0,0,0,0.5);backdrop-filter:blur(12px);animation:fadeIn 1.2s ease;position:relative}
-    h1{font-size:2.7rem;margin-bottom:15px;background:linear-gradient(90deg,#60a5fa,#a78bfa);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
-    p{color:#d1d5db;margin-bottom:35px;line-height:1.6;font-size:1.05rem}
-    .btn{display:inline-block;padding:12px 26px;margin:8px;font-size:1rem;font-weight:600;border-radius:12px;text-decoration:none;transition:0.3s ease-in-out}
-    .btn.primary{background:linear-gradient(90deg,#3b82f6,#9333ea);color:#fff;box-shadow:0 4px 20px rgba(59,130,246,0.4)}
-    .btn.primary:hover{transform:translateY(-2px);box-shadow:0 6px 24px rgba(59,130,246,0.5)}
-    .btn.secondary{border:2px solid #60a5fa;color:#60a5fa}
-    .btn.secondary:hover{background:#60a5fa;color:#fff;transform:translateY(-2px)}
-    .icon{width:110px;margin-bottom:25px;animation:float 3.5s ease-in-out infinite;filter:drop-shadow(0 4px 8px rgba(0,0,0,0.3))}
-    @keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-10px)}}
-    @keyframes fadeIn{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
-    .background-decor{position:absolute;top:-100px;left:-100px;width:300px;height:300px;background:radial-gradient(circle at center,rgba(59,130,246,0.4),transparent 70%);filter:blur(80px);z-index:-1}
-    .background-decor2{position:absolute;bottom:-100px;right:-100px;width:300px;height:300px;background:radial-gradient(circle at center,rgba(147,51,234,0.4),transparent 70%);filter:blur(80px);z-index:-1}
-  </style>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Rizki - Creative Developer</title>
+    <link rel="shortcut icon" href="assets/img/logo.png" type="image/x-icon">
+    
+    <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css">
+    
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Inter:wght@400;500;600&display=swap');
+
+        /*========== VARIABLES ==========*/
+        :root {
+            --bg-main: #030303;
+            --bg-card: rgba(15, 15, 15, 0.4);
+            --bg-hover: rgba(25, 25, 25, 0.6);
+            --text-main: #f8f8f8;
+            --text-muted: #999999;
+            --border-color: rgba(255, 255, 255, 0.08);
+            --accent-color: #ccff00; /* Neon Lime */
+            
+            --font-display: 'Space Grotesk', sans-serif;
+            --font-body: 'Inter', sans-serif;
+            
+            --transition: all 0.4s cubic-bezier(0.19, 1, 0.22, 1);
+            --radius-lg: 24px;
+            --radius-md: 16px;
+        }
+
+        /* Light Mode */
+        body.light-mode {
+            --bg-main: #f0f0f3;
+            --bg-card: rgba(255, 255, 255, 0.6);
+            --bg-hover: rgba(255, 255, 255, 0.9);
+            --text-main: #0a0a0a;
+            --text-muted: #666666;
+            --border-color: rgba(0, 0, 0, 0.08);
+            --accent-color: #000000; 
+        }
+
+        /*========== RESET & BASE ==========*/
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        html { scroll-behavior: smooth; }
+        body {
+            font-family: var(--font-body); background-color: var(--bg-main);
+            color: var(--text-main); line-height: 1.6; overflow-x: hidden;
+            transition: background-color 0.4s ease, color 0.4s ease;
+        }
+        
+        /* Animated Glowing Background (Aurora Effect) */
+        .bg-glow {
+            position: fixed; border-radius: 50%; filter: blur(120px);
+            z-index: -2; opacity: 0.6; animation: floatBlob 12s infinite alternate ease-in-out;
+            pointer-events: none;
+        }
+        .glow-1 { top: -10%; left: -10%; width: 45vw; height: 45vw; background: rgba(204, 255, 0, 0.12); }
+        .glow-2 { bottom: -10%; right: -10%; width: 40vw; height: 40vw; background: rgba(0, 255, 150, 0.1); animation-delay: -5s; }
+        .glow-3 { top: 40%; left: 40%; width: 30vw; height: 30vw; background: rgba(0, 150, 255, 0.08); animation-delay: -2s; animation-duration: 15s;}
+        
+        body.light-mode .glow-1 { background: rgba(0, 0, 0, 0.05); }
+        body.light-mode .glow-2 { background: rgba(0, 0, 0, 0.03); }
+        body.light-mode .glow-3 { background: rgba(0, 0, 0, 0.02); }
+
+        @keyframes floatBlob {
+            0% { transform: translate(0, 0) scale(1); }
+            100% { transform: translate(50px, 50px) scale(1.2); }
+        }
+
+        h1, h2, h3, h4, h5, .logo, .btn, .tag, .marquee-text { font-family: var(--font-display); }
+        a { text-decoration: none; color: inherit; }
+        ul { list-style: none; }
+        img { max-width: 100%; height: auto; display: block; }
+
+        .container { max-width: 1200px; margin: 0 auto; padding: 0 1.5rem; position: relative; z-index: 1; }
+        .section { padding: 8rem 0 4rem; }
+        
+        .section-header { margin-bottom: 4rem; text-align: center; }
+        .section-title { font-size: clamp(2.5rem, 5vw, 4.5rem); font-weight: 700; letter-spacing: -1.5px; text-transform: uppercase; line-height: 1.1; }
+        .section-subtitle { color: var(--text-muted); font-size: 1.1rem; margin-top: 1rem; }
+
+        /*========== PRELOADER ==========*/
+        #preloader {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: var(--bg-main); display: flex; justify-content: center; align-items: center;
+            z-index: 10000; transition: opacity 0.8s cubic-bezier(0.8, 0, 0.2, 1);
+        }
+        .loader-text { font-family: var(--font-display); font-size: 3rem; font-weight: 700; overflow: hidden; }
+        .loader-text span { display: inline-block; animation: reveal 1s cubic-bezier(0.8, 0, 0.2, 1) forwards; transform: translateY(100%); }
+        .loader-text span.dot { color: var(--accent-color); animation-delay: 0.2s; }
+        @keyframes reveal { to { transform: translateY(0); } }
+
+        /*========== FLOATING NAVBAR ==========*/
+        header { position: fixed; top: 24px; left: 50%; transform: translateX(-50%); width: 90%; max-width: 800px; z-index: 100; }
+        nav {
+            display: flex; justify-content: space-between; align-items: center; 
+            background: rgba(10, 10, 10, 0.4); backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px);
+            border: 1px solid var(--border-color); border-radius: 100px; padding: 0.8rem 1.5rem;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        }
+        body.light-mode nav { background: rgba(255, 255, 255, 0.5); border-color: rgba(0,0,0,0.1); box-shadow: 0 10px 30px rgba(0,0,0,0.05); }
+        
+        .logo { font-weight: 700; font-size: 1.2rem; text-transform: uppercase; letter-spacing: 1px; }
+        .logo span { color: var(--accent-color); }
+        
+        .nav-links { display: flex; gap: 2rem; align-items: center; }
+        .nav-link { font-size: 0.85rem; font-weight: 600; color: var(--text-muted); transition: var(--transition); text-transform: uppercase; letter-spacing: 1px; }
+        .nav-link:hover { color: var(--text-main); }
+        
+        .controls { display: flex; gap: 1rem; align-items: center; }
+        .btn-icon, .btn-lang { background: transparent; border: none; color: var(--text-main); font-size: 1.2rem; transition: transform 0.3s; cursor: pointer; }
+        .btn-icon:hover { transform: rotate(15deg); }
+        .btn-lang { font-family: var(--font-display); font-size: 0.8rem; padding: 0.3rem 0.6rem; border: 1px solid var(--border-color); border-radius: 8px; font-weight: 600; cursor: pointer; }
+
+        .menu-toggle { display: none; font-size: 1.5rem; cursor: pointer; }
+
+        @media (max-width: 768px) {
+            header { top: 0; width: 100%; }
+            nav { border-radius: 0; border: none; border-bottom: 1px solid var(--border-color); padding: 1rem 1.5rem; background: var(--bg-main); backdrop-filter: none; }
+            .nav-links {
+                position: fixed; top: 65px; left: -100%; width: 100%; height: calc(100vh - 65px);
+                background: var(--bg-main); flex-direction: column; padding: 4rem 2rem;
+                transition: var(--transition); border-top: 1px solid var(--border-color); justify-content: center;
+            }
+            .nav-links.active { left: 0; }
+            .nav-link { font-size: 1.5rem; }
+            .menu-toggle { display: block; }
+        }
+
+        /*========== BUTTONS & MAGNETIC EFFECT ==========*/
+        .btn {
+            display: inline-flex; align-items: center; justify-content: center; gap: 0.5rem;
+            padding: 1.2rem 2.5rem; border-radius: 100px; font-weight: 600; font-size: 1rem;
+            transition: var(--transition); border: none; text-transform: uppercase; letter-spacing: 1px;
+            position: relative; overflow: hidden; cursor: pointer;
+        }
+        .btn-primary { background: var(--text-main); color: var(--bg-main); }
+        .btn-primary:hover { background: var(--accent-color); color: #000; box-shadow: 0 0 25px rgba(204,255,0,0.4); }
+        .btn-outline { background: transparent; border: 1px solid var(--border-color); color: var(--text-main); backdrop-filter: blur(5px); }
+        .btn-outline:hover { background: var(--bg-hover); border-color: var(--text-main); }
+        
+        @media (hover: hover) and (pointer: fine) {
+            .magnetic { display: inline-block; transition: transform 0.3s cubic-bezier(0.19, 1, 0.22, 1); }
+        }
+
+        /*========== HERO ==========*/
+        .hero-container { display: flex; flex-direction: column; justify-content: center; align-items: center; min-height: 100vh; text-align: center; position: relative; }
+        .badge-hero {
+            display: inline-block; padding: 0.6rem 1.5rem; background: var(--bg-card); backdrop-filter: blur(10px);
+            border: 1px solid var(--border-color); border-radius: 100px; font-size: 0.85rem;
+            font-weight: 600; margin-bottom: 2.5rem; color: var(--text-muted); font-family: var(--font-display);
+            text-transform: uppercase; letter-spacing: 1px; box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+        }
+        .hero-title { font-size: clamp(3.5rem, 10vw, 8.5rem); font-weight: 700; line-height: 0.9; letter-spacing: -3px; margin-bottom: 1.5rem; text-transform: uppercase; }
+        .text-accent { color: transparent; -webkit-text-stroke: 1px var(--text-main); position: relative; transition: all 0.3s; }
+        .text-accent:hover { color: var(--accent-color); -webkit-text-stroke: 0px; text-shadow: 0 0 40px rgba(204,255,0,0.5); }
+        body.light-mode .text-accent:hover { color: #000; text-shadow: none; }
+        
+        .hero-desc { font-size: 1.15rem; color: var(--text-muted); max-width: 550px; margin: 0 auto 3.5rem; line-height: 1.6; }
+        .hero-btns { display: flex; gap: 1.5rem; justify-content: center; flex-wrap: wrap; }
+
+        /*========== INFINITE MARQUEE ==========*/
+        .marquee-wrapper {
+            width: 100%; overflow: hidden; padding: 2.5rem 0;
+            background: #ccff00; /* Fixed Neon Lime background */
+            color: #050505; /* Fixed Black text */
+            transform: rotate(-2deg) scale(1.05);
+            box-shadow: 0 10px 40px rgba(0,0,0,0.3); z-index: 2; position: relative;
+        }
+        .marquee-content { display: flex; width: max-content; animation: scroll 20s linear infinite; }
+        .marquee-text {
+            font-size: 2.5rem; font-weight: 700; text-transform: uppercase;
+            padding: 0 2rem; display: flex; align-items: center; gap: 2rem; letter-spacing: -1px;
+        }
+        .marquee-text i { color: #050505; font-size: 1.2rem; }
+        @keyframes scroll { to { transform: translateX(-50%); } }
+
+        /*========== 3D TILT EFFECT CLASS ==========*/
+        .tilt-effect { transition: transform 0.3s ease-out, background 0.4s ease; transform-style: preserve-3d; will-change: transform; }
+        
+        /*========== BENTO GRID (GLASSMORPHISM) ==========*/
+        .bento-grid {
+            display: grid; grid-template-columns: repeat(4, 1fr);
+            grid-auto-rows: minmax(220px, auto); gap: 1.2rem; perspective: 1000px;
+        }
+        .bento-box {
+            background: var(--bg-card); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
+            border: 1px solid var(--border-color); border-radius: var(--radius-lg); padding: 2.5rem;
+            position: relative; overflow: hidden; box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+        }
+        .bento-box:hover { border-color: rgba(255,255,255,0.15); background: var(--bg-hover); }
+        body.light-mode .bento-box:hover { border-color: rgba(0,0,0,0.2); }
+        
+        .box-about { grid-column: span 2; grid-row: span 2; display: flex; flex-direction: column; justify-content: center; }
+        .box-about h3 { font-size: 2.8rem; margin-bottom: 1.5rem; line-height: 1; letter-spacing: -1.5px; }
+        
+        .box-photo { grid-column: span 1; grid-row: span 2; padding: 0; border: none; }
+        .box-photo img { width: 100%; height: 100%; object-fit: cover; border-radius: var(--radius-lg); filter: grayscale(100%) contrast(1.2); transition: var(--transition); }
+        .box-photo:hover img { filter: grayscale(0%) contrast(1); }
+
+        .box-stat { grid-column: span 1; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; }
+        .stat-num { font-size: 4.5rem; font-weight: 700; color: var(--text-main); font-family: var(--font-display); line-height: 1; }
+        .stat-label { color: var(--text-muted); font-size: 0.85rem; margin-top: 1rem; text-transform: uppercase; letter-spacing: 2px; }
+
+        .box-skill { grid-column: span 2; }
+        .box-skill h3 { margin-bottom: 1.5rem; font-size: 1.2rem; text-transform: uppercase; letter-spacing: 1px; color: var(--text-muted); }
+        .tags { display: flex; flex-wrap: wrap; gap: 0.8rem; transform: translateZ(20px); }
+        .tag { 
+            background: rgba(255,255,255,0.03); border: 1px solid var(--border-color); 
+            padding: 0.6rem 1.2rem; border-radius: 100px; font-size: 0.85rem; font-weight: 500; 
+            transition: var(--transition);
+        }
+        .tag:hover { background: var(--text-main); color: var(--bg-main); transform: scale(1.05); }
+
+        @media (max-width: 992px) {
+            .bento-grid { grid-template-columns: repeat(2, 1fr); }
+            .box-about, .box-skill, .box-photo { grid-column: span 2; }
+            .box-stat { grid-column: span 1; }
+        }
+        @media (max-width: 576px) {
+            .bento-grid { grid-template-columns: 1fr; }
+            .box-about, .box-skill, .box-photo, .box-stat { grid-column: span 1; }
+            .tilt-effect { transform: none !important; }
+        }
+
+        /*========== IMAGE MODAL (LIGHTBOX) ==========*/
+        .image-modal {
+            display: none; position: fixed; z-index: 2000; padding-top: 5vh;
+            left: 0; top: 0; width: 100%; height: 100%; overflow: auto;
+            background-color: rgba(0,0,0,0.95); backdrop-filter: blur(15px);
+            opacity: 0; transition: opacity 0.4s ease;
+        }
+        .image-modal.show { display: block; opacity: 1; }
+        .modal-content {
+            margin: auto; display: block; max-width: 90%; max-height: 90vh;
+            border-radius: 12px; object-fit: contain;
+            animation: zoomIn 0.5s cubic-bezier(0.19, 1, 0.22, 1);
+        }
+        @keyframes zoomIn { from { transform: scale(0.9) translateY(20px); opacity: 0; } to { transform: scale(1) translateY(0); opacity: 1; } }
+        .close-modal {
+            position: absolute; top: 30px; right: 50px; color: #fff;
+            font-size: 40px; font-weight: 300; transition: 0.3s; z-index: 2001; cursor: pointer;
+        }
+        .close-modal:hover { color: var(--accent-color); transform: rotate(90deg); }
+
+        /*========== CERTIFICATE GALLERY ==========*/
+        .gallery-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1rem; }
+        .cert-card {
+            background: var(--bg-card); border: 1px solid var(--border-color); border-radius: var(--radius-md);
+            overflow: hidden; aspect-ratio: 4/3; position: relative; backdrop-filter: blur(5px); cursor: pointer;
+        }
+        .cert-card img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.8s cubic-bezier(0.19, 1, 0.22, 1); filter: grayscale(80%); }
+        .cert-card:hover img { transform: scale(1.08); filter: grayscale(0%); }
+        .cert-card::after {
+            content: 'VIEW'; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
+            background: rgba(0,0,0,0.8); color: white; font-family: var(--font-display); font-weight: 600;
+            padding: 0.5rem 1.5rem; border-radius: 100px; opacity: 0; transition: var(--transition);
+            pointer-events: none; border: 1px solid rgba(255,255,255,0.2); letter-spacing: 1px;
+        }
+        .cert-card:hover::after { opacity: 1; }
+
+        /*========== PORTFOLIO (PREMIUM CARDS) ==========*/
+        .portfolio-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 2.5rem; perspective: 1000px; }
+        .project-card { 
+            border-radius: var(--radius-lg); overflow: hidden; position: relative; 
+            border: 1px solid var(--border-color); background: var(--bg-card); 
+            backdrop-filter: blur(10px); box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+        }
+        .project-img { position: relative; width: 100%; aspect-ratio: 16/11; overflow: hidden; cursor: pointer; }
+        .project-img img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.8s cubic-bezier(0.19, 1, 0.22, 1); filter: brightness(0.85); }
+        .project-card:hover .project-img img { transform: scale(1.08); filter: brightness(1.1); }
+        .project-img::after { 
+            content: 'ZOOM'; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
+            background: rgba(0,0,0,0.8); color: white; font-family: var(--font-display); font-weight: 600;
+            padding: 0.5rem 1.5rem; border-radius: 100px; opacity: 0; transition: var(--transition);
+            pointer-events: none; border: 1px solid rgba(255,255,255,0.2); letter-spacing: 1px;
+        }
+        .project-img:hover::after { opacity: 1; }
+        
+        .project-info { padding: 2rem; border-top: 1px solid var(--border-color); display: flex; justify-content: space-between; align-items: flex-end; transform: translateZ(30px); }
+        .project-info-left h3 { font-size: 1.5rem; margin-bottom: 0.5rem; font-weight: 700; letter-spacing: -0.5px; }
+        .project-tech { display: flex; gap: 0.5rem; color: var(--text-muted); font-size: 0.85rem; font-family: var(--font-display); text-transform: uppercase; }
+        .btn-project-link { 
+            width: 55px; height: 55px; border-radius: 50%; background: rgba(255,255,255,0.05); border: 1px solid var(--border-color);
+            display: flex; justify-content: center; align-items: center; color: var(--text-main); font-size: 1.4rem; transition: var(--transition); cursor: pointer;
+        }
+        .project-card:hover .btn-project-link { background: var(--text-main); color: var(--bg-main); transform: rotate(45deg); box-shadow: 0 0 20px rgba(255,255,255,0.2); }
+
+        /*========== CONTACT (MINIMAL FORM) ==========*/
+        .contact-wrapper { 
+            max-width: 900px; margin: 0 auto; background: var(--bg-card); backdrop-filter: blur(15px);
+            border: 1px solid var(--border-color); border-radius: var(--radius-lg); padding: 5rem; 
+            box-shadow: 0 15px 40px rgba(0,0,0,0.2);
+        }
+        .contact-grid { display: grid; grid-template-columns: 1fr; gap: 4rem; }
+        .contact-info { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 2rem; border-bottom: 1px solid var(--border-color); padding-bottom: 3rem; }
+        .info-block h4 { color: var(--text-muted); font-size: 0.85rem; text-transform: uppercase; margin-bottom: 0.5rem; letter-spacing: 1px; }
+        .info-block p { font-size: 1.2rem; font-weight: 500; }
+        
+        .form-group { margin-bottom: 3rem; position: relative; }
+        .form-group input, .form-group textarea {
+            width: 100%; background: transparent; border: none; border-bottom: 1px solid var(--border-color);
+            padding: 1rem 0; color: var(--text-main); font-family: var(--font-body); font-size: 1.2rem; outline: none; transition: 0.3s;
+        }
+        .form-group input:focus, .form-group textarea:focus { border-color: var(--text-main); }
+        .form-group input::placeholder, .form-group textarea::placeholder { color: var(--text-muted); font-family: var(--font-display); text-transform: uppercase; font-size: 1rem; }
+        
+        @media (max-width: 768px) { .contact-wrapper { padding: 2.5rem; } .contact-info { flex-direction: column; } }
+
+        /*========== FOOTER ==========*/
+        footer { border-top: 1px solid var(--border-color); padding: 4rem 0; text-align: center; position: relative; z-index: 1; }
+        .social-links { display: flex; justify-content: center; gap: 1.5rem; margin-bottom: 2rem; }
+        .social-links a { color: var(--text-muted); font-size: 1.5rem; transition: var(--transition); }
+        .social-links a:hover { color: var(--text-main); transform: translateY(-5px); }
+        footer p { color: var(--text-muted); font-size: 0.9rem; font-family: var(--font-display); text-transform: uppercase; letter-spacing: 1px; }
+
+        /*========== ANIMATION ON SCROLL ==========*/
+        .anim-hidden { opacity: 0; transform: translateY(40px); transition: all 1s cubic-bezier(0.19, 1, 0.22, 1); }
+        .anim-show { opacity: 1; transform: translateY(0); }
+        .anim-delay-1 { transition-delay: 0.15s; }
+        .anim-delay-2 { transition-delay: 0.3s; }
+    </style>
 </head>
 <body>
-  <div class="container">
-    <div class="background-decor"></div>
-    <div class="background-decor2"></div>
-    <svg class="icon" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-      <path stroke-linecap="round" stroke-linejoin="round" d="M15.59 14.37a6 6 0 11-6.95-6.95m8.96 2.08h3.5a.5.5 0 01.5.5v7.5a2.5 2.5 0 01-2.5 2.5h-12a2.5 2.5 0 01-2.5-2.5v-12a2.5 2.5 0 012.5-2.5h7.5a.5.5 0 01.5.5v3.5" />
-    </svg>
-    <h1>Portfolio Sedang Diperbaiki</h1>
-    <p>Maaf yaa, portfolio ini lagi di-upgrade biar tampil lebih kece dan profesional <br>Datang lagi nanti atau hubungi aku kalau butuh akses cepat.</p>
-    <a href="https://wa.me/6287783821691" class="btn primary">Hubungi Aku</a>
-    <a href="/" class="btn secondary">Kembali ke Beranda</a>
-  </div>
+
+    <div class="bg-glow glow-1"></div>
+    <div class="bg-glow glow-2"></div>
+    <div class="bg-glow glow-3"></div>
+
+    <div id="preloader">
+        <div class="loader-text"><span>Rizki</span><span class="dot">.</span></div>
+    </div>
+
+    <div id="image-modal" class="image-modal">
+        <span class="close-modal" id="close-modal">&times;</span>
+        <img class="modal-content" id="modal-img">
+    </div>
+
+    <header>
+        <nav>
+            <a href="#home" class="logo">Rizki<span>.</span></a>
+            <ul class="nav-links" id="nav-links">
+                <li><a href="#about" class="nav-link lang" data-id="Tentang" data-en="About">Tentang</a></li>
+                <li><a href="#certificates" class="nav-link lang" data-id="Sertifikat" data-en="Certs">Sertifikat</a></li>
+                <li><a href="#portfolio" class="nav-link lang" data-id="Karya" data-en="Work">Karya</a></li>
+                <li><a href="#contact" class="nav-link lang" data-id="Kontak" data-en="Contact">Kontak</a></li>
+            </ul>
+            <div class="controls">
+                <button class="btn-lang" id="lang-toggle">EN</button>
+                <button class="btn-icon" id="theme-toggle"><i class="uil uil-moon"></i></button>
+                <div class="menu-toggle" id="menu-toggle"><i class="uil uil-bars"></i></div>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <section id="home" class="hero-container container anim-hidden">
+            <span class="badge-hero lang tilt-effect" data-id="Full Stack Dev & UI Designer" data-en="Full Stack Dev & UI Designer">Full Stack Dev & UI Designer</span>
+            <h1 class="hero-title lang" data-id="Halo, gue <br><span class='text-accent'>Rizki.</span>" data-en="Hi, I am <br><span class='text-accent'>Rizki.</span>">
+                Halo, gue <br><span class="text-accent">Rizki.</span>
+            </h1>
+            <p class="hero-desc lang" 
+               data-id="Gue meracik code dan desain jadi satu kesatuan epik. Bikin website yang gak cuma kenceng, tapi juga punya look yang mahal." 
+               data-en="I blend code and design into one epic experience. Building websites that are not only fast, but look ridiculously premium.">
+               Gue meracik code dan desain jadi satu kesatuan epik. Bikin website yang gak cuma kenceng, tapi juga punya look yang mahal.
+            </p>
+            <div class="hero-btns">
+                <a href="#portfolio" class="btn btn-primary magnetic lang" data-id="Lihat Karya" data-en="View Work">Lihat Karya</a>
+                <a href="#contact" class="btn btn-outline magnetic lang" data-id="Ayo Ngobrol" data-en="Let's Talk">Ayo Ngobrol</a>
+            </div>
+        </section>
+
+        <div class="marquee-wrapper anim-hidden">
+            <div class="marquee-content">
+                <div class="marquee-text">
+                    AVAILABLE FOR HIRE <i>✦</i> FULL STACK DEV <i>✦</i> UI/UX DESIGNER <i>✦</i> CREATIVE CODER <i>✦</i> WEB ENTHUSIAST <i>✦</i> 
+                    AVAILABLE FOR HIRE <i>✦</i> FULL STACK DEV <i>✦</i> UI/UX DESIGNER <i>✦</i> CREATIVE CODER <i>✦</i> WEB ENTHUSIAST <i>✦</i>
+                </div>
+            </div>
+        </div>
+
+        <section id="about" class="section container">
+            <div class="section-header anim-hidden">
+                <h2 class="section-title lang" data-id="Siapa Sih Gue?" data-en="Who Am I?">Siapa Sih Gue?</h2>
+            </div>
+            
+            <div class="bento-grid">
+                <div class="bento-box box-about anim-hidden tilt-effect">
+                    <h3 class="lang" data-id="Gak Suka Teori Doang" data-en="Built Different">Gak Suka Teori Doang</h3>
+                    <p class="lang" data-id="Gue pelajar SMK IDN Islamic Boarding School jurusan Software Engineering. Cara main gue: langsung terjun ke proyek nyata. Buat gue, logika backend yang gahar percuma kalau tampilan frontend-nya kaku. Makanya gue kuasain dua-duanya." data-en="Studying Software Engineering at SMK IDN. My game plan: dive straight into real projects. A powerful backend is useless if the frontend feels stiff. That's why I master both.">
+                        Gue pelajar SMK IDN Islamic Boarding School jurusan Software Engineering. Cara main gue: langsung terjun ke proyek nyata. Buat gue, logika backend yang gahar percuma kalau tampilan frontend-nya kaku. Makanya gue kuasain dua-duanya.
+                    </p>
+                </div>
+                
+                <div class="bento-box box-photo anim-hidden anim-delay-1 tilt-effect">
+                    <img src="assets/img/profile.jpg" alt="Rizki" onerror="this.src='https://ui-avatars.com/api/?name=Rizki&background=151515&color=F8F8F8&size=512'">
+                </div>
+                
+                <div class="bento-box box-stat anim-hidden tilt-effect">
+                    <div class="stat-num">45+</div>
+                    <div class="stat-label lang" data-id="Proyek Kelar" data-en="Projects Done">Proyek Kelar</div>
+                </div>
+                
+                <div class="bento-box box-stat anim-hidden anim-delay-1 tilt-effect">
+                    <div class="stat-num">3+</div>
+                    <div class="stat-label lang" data-id="Klien Bisnis" data-en="Biz Clients">Klien Bisnis</div>
+                </div>
+                
+                <div class="bento-box box-skill anim-hidden anim-delay-2 tilt-effect">
+                    <h3 class="lang" data-id="Tech Stack" data-en="Tech Stack">Tech Stack</h3>
+                    <div class="tags">
+                        <span class="tag">HTML</span>
+                        <span class="tag">CSS</span>
+                        <span class="tag">JavaScript</span>
+                        <span class="tag">React</span>
+                        <span class="tag">Node.js</span>
+                        <span class="tag">PHP</span>
+                        <span class="tag">Laravel</span>
+                        <span class="tag">Tailwind</span>
+                        <span class="tag">Bootstrap</span>
+                        <span class="tag">SCSS</span>
+                        <span class="tag">MySQL</span>
+                        <span class="tag">SQLite</span>
+                        <span class="tag">PhpMyAdmin</span>
+                        <span class="tag">XAMPP</span>
+                        <span class="tag">Dart</span>
+                        <span class="tag">Go</span>
+                        <span class="tag">AI</span>
+                        <span class="tag">Git</span>
+                        <span class="tag">GitHub</span>
+                        <span class="tag">Web Hosting</span>
+                        <span class="tag">VS Code</span>
+                        <span class="tag">Framer</span>
+                        <span class="tag">Canva</span>
+                        <span class="tag">Photoshop</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="certificates" class="section container">
+            <div class="section-header anim-hidden">
+                <h2 class="section-title lang" data-id="Bukti Nyata" data-en="Certificates">Bukti Nyata</h2>
+                <p class="section-subtitle lang" data-id="Pajangan sertifikat biar makin tepercaya. (Klik buat perbesar)" data-en="Wall of trust. (Click to expand)">Pajangan sertifikat biar makin tepercaya. (Klik buat perbesar)</p>
+            </div>
+            
+            <div class="gallery-grid">
+                <div class="cert-card tilt-effect anim-hidden"><img src="assets/img/sertifikat 1.png" alt="Sertif" class="zoomable-img" onerror="this.src='https://images.unsplash.com/photo-1589330694653-ded6df03f754?w=600&q=80'"></div>
+                <div class="cert-card tilt-effect anim-hidden anim-delay-1"><img src="assets/img/sertifikat 2.jpeg" alt="Sertif" class="zoomable-img" onerror="this.src='https://images.unsplash.com/photo-1589330694653-ded6df03f754?w=600&q=80'"></div>
+                <div class="cert-card tilt-effect anim-hidden anim-delay-2"><img src="assets/img/sertifikat 3.png" alt="Sertif" class="zoomable-img" onerror="this.src='https://images.unsplash.com/photo-1589330694653-ded6df03f754?w=600&q=80'"></div>
+                <div class="cert-card tilt-effect anim-hidden"><img src="assets/img/sertifikat 4.png" alt="Sertif" class="zoomable-img" onerror="this.src='https://images.unsplash.com/photo-1589330694653-ded6df03f754?w=600&q=80'"></div>
+                <div class="cert-card tilt-effect anim-hidden anim-delay-1"><img src="assets/img/sertifikat 5.jpeg" alt="Sertif" class="zoomable-img" onerror="this.src='https://images.unsplash.com/photo-1589330694653-ded6df03f754?w=600&q=80'"></div>
+                <div class="cert-card tilt-effect anim-hidden anim-delay-2"><img src="assets/img/sertifikat 6.jpeg" alt="Sertif" class="zoomable-img" onerror="this.src='https://images.unsplash.com/photo-1589330694653-ded6df03f754?w=600&q=80'"></div>
+                <div class="cert-card tilt-effect anim-hidden"><img src="assets/img/sertifikat 7.jpeg" alt="Sertif" class="zoomable-img" onerror="this.src='https://images.unsplash.com/photo-1589330694653-ded6df03f754?w=600&q=80'"></div>
+                <div class="cert-card tilt-effect anim-hidden anim-delay-1"><img src="assets/img/sertifikat 8.png" alt="Sertif" class="zoomable-img" onerror="this.src='https://images.unsplash.com/photo-1589330694653-ded6df03f754?w=600&q=80'"></div>
+                <div class="cert-card tilt-effect anim-hidden anim-delay-2"><img src="assets/img/sertifikat 9.png" alt="Sertif" class="zoomable-img" onerror="this.src='https://images.unsplash.com/photo-1589330694653-ded6df03f754?w=600&q=80'"></div>
+                <div class="cert-card tilt-effect anim-hidden"><img src="assets/img/sertifikat 10.png" alt="Sertif" class="zoomable-img" onerror="this.src='https://images.unsplash.com/photo-1589330694653-ded6df03f754?w=600&q=80'"></div>
+            </div>
+        </section>
+
+        <section id="portfolio" class="section container">
+            <div class="section-header anim-hidden">
+                <h2 class="section-title lang" data-id="Proyek Pilihan" data-en="Selected Work">Proyek Pilihan</h2>
+            </div>
+
+            <div class="portfolio-grid">
+                
+                <div class="project-card tilt-effect anim-hidden">
+                    <div class="project-img"><img src="assets/img/portfolio1.png" alt="Markaz Dimsum" class="zoomable-img" onerror="this.src='https://images.unsplash.com/photo-1555939594-58d7cb561ad1?w=800&q=80'"></div>
+                    <div class="project-info">
+                        <div class="project-info-left">
+                            <h3>Markaz Dimsum</h3>
+                            <div class="project-tech"><span>Laravel</span> / <span>Tailwind</span></div>
+                        </div>
+                        <a href="https://markaz-dimsum.com" target="_blank" class="btn-project-link"><i class="uil uil-arrow-up-right"></i></a>
+                    </div>
+                </div>
+                
+                <div class="project-card tilt-effect anim-hidden anim-delay-1">
+                    <div class="project-img"><img src="assets/img/portfolio2.png" alt="Diniyyah" class="zoomable-img" onerror="this.src='https://images.unsplash.com/photo-1517694712202-14dd9538aa97?w=800&q=80'"></div>
+                    <div class="project-info">
+                        <div class="project-info-left">
+                            <h3>Website Diniyyah</h3>
+                            <div class="project-tech"><span>HTML</span> / <span>CSS</span> / <span>JS</span></div>
+                        </div>
+                        <a href="https://website-diniyyah.vercel.app/index.html" target="_blank" class="btn-project-link"><i class="uil uil-arrow-up-right"></i></a>
+                    </div>
+                </div>
+
+                <div class="project-card tilt-effect anim-hidden">
+                    <div class="project-img"><img src="assets/img/portfolio3.png" alt="Monetra" class="zoomable-img" onerror="this.src='https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800&q=80'"></div>
+                    <div class="project-info">
+                        <div class="project-info-left">
+                            <h3>Monetra Web</h3>
+                            <div class="project-tech"><span>Tailwind</span> / <span>JS</span></div>
+                        </div>
+                        <a href="https://monetra-zeta.vercel.app" target="_blank" class="btn-project-link"><i class="uil uil-arrow-up-right"></i></a>
+                    </div>
+                </div>
+
+                <div class="project-card tilt-effect anim-hidden anim-delay-1">
+                    <div class="project-img"><img src="assets/img/portfolio4.png" alt="IDN SPORT" class="zoomable-img" onerror="this.src='https://images.unsplash.com/photo-1507238691740-187a5b1d37b8?w=800&q=80'"></div>
+                    <div class="project-info">
+                        <div class="project-info-left">
+                            <h3>IDN SPORT</h3>
+                            <div class="project-tech"><span>Bootstrap</span> / <span>JS</span></div>
+                        </div>
+                        <a href="https://hponj.github.io/IDN-Sport-Center/" target="_blank" class="btn-project-link"><i class="uil uil-arrow-up-right"></i></a>
+                    </div>
+                </div>
+
+                <div class="project-card tilt-effect anim-hidden">
+                    <div class="project-img"><img src="assets/img/portfolio5.png" alt="SGC" class="zoomable-img" onerror="this.src='https://images.unsplash.com/photo-1542831371-29b0f74f9713?w=800&q=80'"></div>
+                    <div class="project-info">
+                        <div class="project-info-left">
+                            <h3>SGC API</h3>
+                            <div class="project-tech"><span>Laravel</span> / <span>MySQL</span></div>
+                        </div>
+                        <a href="https://github.com/mrizzzz97/sgc" target="_blank" class="btn-project-link"><i class="uil uil-github-alt"></i></a>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <section id="contact" class="section container">
+            <div class="contact-wrapper anim-hidden tilt-effect">
+                <div class="section-header" style="margin-bottom: 3rem; text-align: left;">
+                    <h2 class="section-title lang" data-id="Gas Ngobrol." data-en="Let's Build.">Gas Ngobrol.</h2>
+                </div>
+                
+                <div class="contact-info">
+                    <div class="info-block">
+                        <h4>WhatsApp</h4>
+                        <p>+62 895-3503-99990</p>
+                    </div>
+                    <div class="info-block">
+                        <h4>Email</h4>
+                        <p>rizkisuryapratama2020@gmail.com</p>
+                    </div>
+                    <div class="info-block">
+                        <h4 class="lang" data-id="Basecamp" data-en="Location">Basecamp</h4>
+                        <p>Bekasi, Indonesia</p>
+                    </div>
+                </div>
+
+                <form id="wa-form" style="margin-top: 4rem;">
+                    <div class="form-group">
+                        <input type="text" id="name" required class="lang" data-id="NAMA LO" data-en="YOUR NAME" placeholder="NAMA LO">
+                    </div>
+                    <div class="form-group">
+                        <input type="text" id="topic" required class="lang" data-id="MAU BIKIN APA NIH?" data-en="WHAT'S THE IDEA?" placeholder="MAU BIKIN APA NIH?">
+                    </div>
+                    <div class="form-group">
+                        <textarea id="message" rows="3" required class="lang" data-id="CERITAIN DETAILNYA..." data-en="TELL ME MORE..." placeholder="CERITAIN DETAILNYA..."></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-primary magnetic" style="width: 100%;">
+                        <span class="lang" data-id="Kirim via WhatsApp" data-en="Send via WhatsApp">Kirim via WhatsApp</span> <i class="uil uil-arrow-right"></i>
+                    </button>
+                </form>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <div class="social-links">
+                <a href="https://github.com/mrizzzz97" target="_blank"><i class="uil uil-github-alt"></i></a>
+                <a href="https://www.linkedin.com/in/muhammad-rizki-suryapratama" target="_blank"><i class="uil uil-linkedin"></i></a>
+                <a href="https://www.instagram.com/m.rizzzz.97/" target="_blank"><i class="uil uil-instagram"></i></a>
+                <a href="https://www.youtube.com/@m.rizzzz.97" target="_blank"><i class="uil uil-youtube"></i></a>
+            </div>
+            <p>&copy; 2026 Rizki. Crafted with logic & design.</p>
+        </div>
+    </footer>
+
+    <script>
+        // --- 1. 3D TILT EFFECT (Vanilla JS) ---
+        const tiltCards = document.querySelectorAll('.tilt-effect');
+        tiltCards.forEach(card => {
+            card.addEventListener('mousemove', e => {
+                const rect = card.getBoundingClientRect();
+                const x = e.clientX - rect.left;
+                const y = e.clientY - rect.top;
+                
+                const centerX = rect.width / 2;
+                const centerY = rect.height / 2;
+                
+                const rotateX = ((y - centerY) / centerY) * -5;
+                const rotateY = ((x - centerX) / centerX) * 5;
+                
+                card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale3d(1.02, 1.02, 1.02)`;
+            });
+            
+            card.addEventListener('mouseleave', () => {
+                card.style.transform = `perspective(1000px) rotateX(0deg) rotateY(0deg) scale3d(1, 1, 1)`;
+            });
+        });
+
+        // --- 2. MAGNETIC BUTTONS ---
+        if (window.matchMedia("(pointer: fine)").matches) {
+            const magnetics = document.querySelectorAll('.magnetic');
+            magnetics.forEach((btn) => {
+                btn.addEventListener('mousemove', (e) => {
+                    const position = btn.getBoundingClientRect();
+                    const x = e.pageX - position.left - position.width / 2;
+                    const y = e.pageY - position.top - position.height / 2;
+                    btn.style.transform = `translate(${x * 0.3}px, ${y * 0.5}px)`;
+                });
+                btn.addEventListener('mouseout', (e) => {
+                    btn.style.transform = 'translate(0px, 0px)';
+                });
+            });
+        }
+
+        // --- 3. PRELOADER ---
+        window.addEventListener('load', () => {
+            setTimeout(() => {
+                const preloader = document.getElementById('preloader');
+                preloader.style.opacity = '0';
+                setTimeout(() => preloader.style.display = 'none', 800);
+            }, 1000);
+        });
+
+        // --- 4. SCROLL ANIMATION ---
+        const observerOptions = { threshold: 0.1, rootMargin: "0px 0px -50px 0px" };
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('anim-show');
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, observerOptions);
+        document.querySelectorAll('.anim-hidden').forEach(el => observer.observe(el));
+
+        // --- 5. IMAGE LIGHTBOX MODAL ---
+        const modal = document.getElementById("image-modal");
+        const modalImg = document.getElementById("modal-img");
+        const closeModal = document.getElementById("close-modal");
+        const zoomableImages = document.querySelectorAll('.zoomable-img');
+
+        zoomableImages.forEach(img => {
+            img.addEventListener('click', function(e) {
+                e.stopPropagation(); 
+                modal.classList.add('show');
+                modalImg.src = this.src;
+            });
+        });
+
+        closeModal.addEventListener('click', () => modal.classList.remove('show'));
+        window.addEventListener('click', (e) => { if (e.target == modal) modal.classList.remove('show'); });
+
+        // --- 6. MOBILE MENU ---
+        const menuToggle = document.getElementById('menu-toggle');
+        const navLinks = document.getElementById('nav-links');
+        
+        menuToggle.addEventListener('click', () => navLinks.classList.toggle('active'));
+        document.querySelectorAll('.nav-link').forEach(link => {
+            link.addEventListener('click', () => navLinks.classList.remove('active'));
+        });
+
+        // --- 7. THEME TOGGLE (DARK/LIGHT) ---
+        const themeToggle = document.getElementById('theme-toggle');
+        const iconTheme = themeToggle.querySelector('i');
+        
+        if (localStorage.getItem('theme') === 'light') {
+            document.body.classList.add('light-mode');
+            iconTheme.classList.replace('uil-moon', 'uil-sun');
+        }
+
+        themeToggle.addEventListener('click', () => {
+            document.body.classList.toggle('light-mode');
+            if (document.body.classList.contains('light-mode')) {
+                iconTheme.classList.replace('uil-moon', 'uil-sun');
+                localStorage.setItem('theme', 'light');
+            } else {
+                iconTheme.classList.replace('uil-sun', 'uil-moon');
+                localStorage.setItem('theme', 'dark');
+            }
+        });
+
+        // --- 8. LANGUAGE TOGGLE ---
+        const langToggle = document.getElementById('lang-toggle');
+        const langElements = document.querySelectorAll('.lang');
+        let currentLang = localStorage.getItem('lang') || 'id';
+
+        const updateLanguage = () => {
+            langElements.forEach(el => {
+                if (el.tagName.toLowerCase() === 'input' || el.tagName.toLowerCase() === 'textarea') {
+                    if(el.hasAttribute(`data-${currentLang}`)) {
+                        el.placeholder = el.getAttribute(`data-${currentLang}`);
+                    }
+                } else {
+                    if(el.hasAttribute(`data-${currentLang}`)) {
+                        el.innerHTML = el.getAttribute(`data-${currentLang}`);
+                    }
+                }
+            });
+            langToggle.innerText = currentLang === 'id' ? 'EN' : 'ID';
+        };
+        updateLanguage();
+
+        langToggle.addEventListener('click', () => {
+            currentLang = currentLang === 'id' ? 'en' : 'id';
+            localStorage.setItem('lang', currentLang);
+            updateLanguage();
+        });
+
+        // --- 9. WHATSAPP FORM ---
+        document.getElementById('wa-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const name = document.getElementById('name').value;
+            const topic = document.getElementById('topic').value;
+            const message = document.getElementById('message').value;
+
+            const targetPhone = "62895350399990";
+            const waText = `Halo Rizki, kenalin gue ${name}.%0A%0ATopik: ${topic}%0APesan: ${message}`;
+            
+            window.open(`https://wa.me/${targetPhone}?text=${waText}`, '_blank');
+        });
+    </script>
 </body>
 </html>
