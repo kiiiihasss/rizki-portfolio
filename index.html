@@ -35,7 +35,7 @@ a{color:inherit;text-decoration:none}ul{list-style:none}img{max-width:100%;displ
 .loader-text .dot{color:var(--hl);animation-delay:.12s}
 @keyframes up{to{transform:none}}
 
-header{position:fixed;top:14px;left:0;right:0;margin:0 auto;width:min(92%,780px);z-index:100}
+header{position:fixed;top:14px;left:0;right:0;margin:0 auto;width:min(94%,860px);z-index:100}
 nav{display:flex;justify-content:space-between;align-items:center;gap:1rem;padding:.55rem .6rem .55rem 1.4rem;border:1px solid var(--bd);border-radius:100px;background:color-mix(in srgb,var(--bg) 80%,transparent);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px)}
 .logo{font-weight:800;font-size:1.25rem;letter-spacing:-.03em}.logo span{color:var(--hl)}
 .nav-links{display:flex;gap:.2rem}
@@ -100,6 +100,28 @@ nav{display:flex;justify-content:space-between;align-items:center;gap:1rem;paddi
 .zoom{display:block;width:100%;height:100%;background:none;border:0;padding:0;cursor:zoom-in}
 .zoom img{width:100%;height:100%;object-fit:cover;object-position:top;transition:transform .6s var(--ease)}
 @media(hover:hover){.zoom:hover img{transform:scale(1.05)}}
+.edu{position:relative;max-width:840px;padding-left:64px}
+.edu-line{position:absolute;left:19px;top:10px;bottom:10px;width:2px;background:var(--bd2);border-radius:2px;overflow:hidden}
+.edu-fill{display:block;width:100%;height:100%;background:linear-gradient(var(--hl),color-mix(in srgb,var(--hl) 15%,transparent));transform-origin:top;transform:scaleY(var(--p,0))}
+.edu ol{list-style:none;display:grid;gap:1.4rem}
+.edu-item{position:relative}
+.edu-node{position:absolute;left:-56px;top:2.1rem;width:24px;height:24px;border-radius:50%;background:var(--bg);border:2px solid var(--bd2);display:grid;place-items:center;transition:.5s var(--ease)}
+.edu-node::after{content:"";width:8px;height:8px;border-radius:50%;background:var(--bd2);transition:.5s}
+.edu-item.on .edu-node{border-color:var(--hl);box-shadow:0 0 0 6px var(--glow)}
+.edu-item.on .edu-node::after{background:var(--hl)}
+.edu-card{padding:2rem 2rem 2.4rem}
+.edu-year{display:inline-block;font:600 .85rem var(--fb);padding:.25rem .9rem;border-radius:100px;border:1px solid var(--bd2);margin-bottom:1rem}
+.edu-card h3{font-size:clamp(1.6rem,3.6vw,2.5rem);font-weight:800;letter-spacing:-.04em;line-height:1.05;max-width:85%;position:relative}
+.edu-card p{display:flex;align-items:center;gap:.5rem;color:var(--mu);margin-top:.8rem;position:relative}
+.edu-card p i{color:var(--hl);font-size:1.25rem}
+.ghost{position:absolute;right:-.4rem;bottom:-1.5rem;font:800 clamp(5rem,15vw,9.5rem)/1 var(--fd);letter-spacing:-.06em;color:transparent;-webkit-text-stroke:1px var(--bd2);pointer-events:none;user-select:none;transition:-webkit-text-stroke-color .4s,translate .6s var(--ease)}
+@media(hover:hover){.edu-card:hover .ghost{-webkit-text-stroke-color:var(--hl);translate:-12px -6px}}
+.live{display:inline-flex;align-items:center;gap:.5rem;margin-left:.5rem;font-size:.8rem;font-weight:600;color:var(--hl);padding:.28rem .85rem;border-radius:100px;background:var(--glow);vertical-align:top}
+:root.light .live{color:#3f5a00}
+.live::before{content:"";width:7px;height:7px;border-radius:50%;background:var(--hl);animation:pulse 1.6s infinite}
+.edu-item.current .edu-card::after{content:"";position:absolute;left:0;right:0;bottom:0;height:3px;background:linear-gradient(90deg,transparent,var(--hl),transparent) no-repeat;background-size:45% 100%;animation:sweep 2.6s linear infinite}
+@keyframes sweep{from{background-position:-60% 0}to{background-position:170% 0}}
+@media(max-width:600px){.edu{padding-left:46px}.edu-line{left:11px}.edu-node{left:-46px}.edu-card{padding:1.6rem 1.4rem 2.2rem}.edu-card h3{max-width:100%}}
 .certs{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,220px),1fr));gap:1rem}
 .cert{aspect-ratio:4/3}
 
@@ -178,6 +200,7 @@ footer p{color:var(--mu);font-size:.9rem}
     <a href="#home" class="logo">Rizki<span>.</span></a>
     <ul class="nav-links" id="nav-links">
       <li><a href="#about" class="nav-link lang" data-id="Tentang" data-en="About">Tentang</a></li>
+      <li><a href="#education" class="nav-link lang" data-id="Pendidikan" data-en="Education">Pendidikan</a></li>
       <li><a href="#certificates" class="nav-link lang" data-id="Sertifikat" data-en="Certs">Sertifikat</a></li>
       <li><a href="#portfolio" class="nav-link lang" data-id="Karya" data-en="Work">Karya</a></li>
       <li><a href="#contact" class="nav-link lang" data-id="Kontak" data-en="Contact">Kontak</a></li>
@@ -218,6 +241,33 @@ footer p{color:var(--mu);font-size:.9rem}
       <div class="b b-stat card rv d1"><div class="stat-num">45+</div><div class="stat-label lang" data-id="Proyek Selesai" data-en="Projects Done">Proyek Selesai</div></div>
       <div class="b b-stat card rv d1"><div class="stat-num">3+</div><div class="stat-label lang" data-id="Klien Bisnis" data-en="Biz Clients">Klien Bisnis</div></div>
       <div class="b b-skill card rv d2"><h3 class="lang" data-id="Tech Stack" data-en="Tech Stack">Tech Stack</h3><div class="tags" id="tags"></div></div>
+    </div>
+  </section>
+
+  <section id="education" class="section container">
+    <div class="sec-head rv"><h2 class="sec-title lang" data-id="Pendidikan" data-en="Education">Pendidikan</h2></div>
+    <div class="edu" id="edu">
+      <span class="edu-line" aria-hidden="true"><span class="edu-fill"></span></span>
+      <ol>
+        <li class="edu-item rv">
+          <span class="edu-node" aria-hidden="true"></span>
+          <article class="edu-card card">
+            <span class="edu-year">2023 — 2025</span>
+            <h3>SMP Bina Qurani IBS</h3>
+            <p><i class="uil uil-brackets-curly"></i>Software Developer &amp; UI/UX Designer</p>
+            <span class="ghost" aria-hidden="true">2023</span>
+          </article>
+        </li>
+        <li class="edu-item current rv d1">
+          <span class="edu-node" aria-hidden="true"></span>
+          <article class="edu-card card">
+            <span class="edu-year">2025 —</span><span class="live lang" data-id="Sedang berjalan" data-en="Ongoing">Sedang berjalan</span>
+            <h3>SMK IDN IBS</h3>
+            <p><i class="uil uil-brackets-curly"></i>Software Developer</p>
+            <span class="ghost" aria-hidden="true">2025</span>
+          </article>
+        </li>
+      </ol>
     </div>
   </section>
 
@@ -309,10 +359,12 @@ if(matchMedia('(hover:hover)').matches){let raf;addEventListener('pointermove',e
 raf=requestAnimationFrame(()=>{const r=c.getBoundingClientRect();c.style.setProperty('--mx',e.clientX-r.left+'px');c.style.setProperty('--my',e.clientY-r.top+'px')})},{passive:true})}
 
 /* Scroll: nav aktif + tombol ke atas */
-const links=$$('.nav-link'),ids=['about','certificates','portfolio','contact'],topBtn=$('#top');let tick=false;
+const links=$$('.nav-link'),ids=['about','education','certificates','portfolio','contact'],topBtn=$('#top');let tick=false;
 const onScroll=()=>{tick=false;const y=scrollY,ref=y+innerHeight*.35,bottom=innerHeight+y>=document.documentElement.scrollHeight-6;
 let cur='';ids.forEach(id=>{if($('#'+id).offsetTop<=ref)cur=id});if(bottom)cur='contact';
-links.forEach(l=>l.classList.toggle('active',l.getAttribute('href')==='#'+cur));topBtn.classList.toggle('show',y>700)};
+links.forEach(l=>l.classList.toggle('active',l.getAttribute('href')==='#'+cur));topBtn.classList.toggle('show',y>700);
+const ed=$('#edu'),er=ed.getBoundingClientRect(),h=innerHeight*.65;ed.style.setProperty('--p',Math.min(1,Math.max(0,(h-er.top)/er.height)));
+$$('.edu-item').forEach(i=>i.classList.toggle('on',i.getBoundingClientRect().top<h))};
 addEventListener('scroll',()=>{if(!tick){tick=true;requestAnimationFrame(onScroll)}},{passive:true});onScroll();
 topBtn.addEventListener('click',()=>scrollTo({top:0,behavior:'smooth'}));
 
