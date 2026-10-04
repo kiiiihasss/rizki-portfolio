@@ -3,240 +3,180 @@
 
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Rizki - Creative Developer</title>
     <link rel="stylesheet" href="assets/css/style.css">
-    <link rel="shortcut icon" href="assets/img/logo.png" type="image/x-icon">
+    <link rel="shortcut icon" href="assets/img/logo.png">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="stylesheet"
-        href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=Instrument+Sans:wght@400;500;600&display=swap">
+        href="https://fonts.googleapis.com/css2?family=Unbounded:wght@500;700;800&family=Hanken+Grotesk:wght@400;500;600&display=swap">
     <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css">
-    <script>try { if (localStorage.getItem('theme') === 'light') document.documentElement.classList.add('light') } catch (e) { }</script>
-
+    <script>try { var t = localStorage.getItem('theme'); if (t === 'dark' || (!t && matchMedia('(prefers-color-scheme:dark)').matches)) document.documentElement.classList.add('dark') } catch (e) { }</script>
 </head>
 
 <body>
-
     <div class="prog" aria-hidden="true"></div>
-    <div id="glow" aria-hidden="true"></div>
-    <div id="preloader">
-        <div class="loader-text"><span>Rizki</span><span class="dot">.</span></div>
-    </div>
+    <div id="pre"><b>Rizki<span>.</span></b></div>
 
-    <div id="lb" class="lb" role="dialog" aria-modal="true" aria-label="Pratinjau gambar">
-        <button type="button" class="lb-btn lb-close" data-a="close" aria-label="Tutup"><i
-                class="uil uil-times"></i></button>
-        <button type="button" class="lb-btn lb-prev" data-a="prev" aria-label="Sebelumnya"><i
-                class="uil uil-angle-left"></i></button>
-        <img id="lb-img" alt="">
-        <button type="button" class="lb-btn lb-next" data-a="next" aria-label="Berikutnya"><i
-                class="uil uil-angle-right"></i></button>
-        <div class="lb-n" id="lb-n"></div>
+    <div class="lb" id="lb" role="dialog" aria-modal="true" aria-label="Pratinjau gambar">
+        <button class="x" data-a="x" aria-label="Tutup"><i class="uil uil-times"></i></button>
+        <button class="pv" data-a="p" aria-label="Sebelumnya"><i class="uil uil-angle-left"></i></button>
+        <img id="lbi" alt="">
+        <button class="nx" data-a="n" aria-label="Berikutnya"><i class="uil uil-angle-right"></i></button>
+        <div class="n" id="lbn"></div>
     </div>
 
     <header>
         <nav>
             <a href="#home" class="logo">Rizki<span>.</span></a>
-            <ul class="nav-links" id="nav-links">
-                <li><a href="#about" class="nav-link lang" data-id="Tentang" data-en="About">Tentang</a></li>
-                <li><a href="#education" class="nav-link lang" data-id="Pendidikan" data-en="Education">Pendidikan</a>
-                </li>
-                <li><a href="#certificates" class="nav-link lang" data-id="Sertifikat" data-en="Certs">Sertifikat</a>
-                </li>
-                <li><a href="#portfolio" class="nav-link lang" data-id="Karya" data-en="Work">Karya</a></li>
-                <li><a href="#contact" class="nav-link lang" data-id="Kontak" data-en="Contact">Kontak</a></li>
+            <ul class="links" id="links">
+                <li><a href="#about" data-i="n_about">Tentang</a></li>
+                <li><a href="#education" data-i="n_edu">Pendidikan</a></li>
+                <li><a href="#certificates" data-i="n_cert">Sertifikat</a></li>
+                <li><a href="#portfolio" data-i="n_work">Karya</a></li>
+                <li><a href="#contact" data-i="n_contact">Kontak</a></li>
             </ul>
-            <div class="controls">
-                <button type="button" class="ibtn txt" id="lang-toggle" aria-label="Ganti bahasa">EN</button>
-                <button type="button" class="ibtn" id="theme-toggle" aria-label="Ganti tema"><i
-                        class="uil uil-moon"></i></button>
-                <button type="button" class="ibtn menu-toggle" id="menu-toggle" aria-label="Menu"
-                    aria-expanded="false"><i class="uil uil-bars"></i></button>
+            <div class="ctl">
+                <button class="ib t" id="lang" aria-label="Ganti bahasa">EN</button>
+                <button class="ib" id="theme" aria-label="Ganti tema"><i class="uil uil-moon"></i></button>
+                <button class="ib burger" id="burger" aria-label="Menu" aria-expanded="false"><i
+                        class="uil uil-bars"></i></button>
             </div>
         </nav>
     </header>
 
     <main>
-        <section id="home" class="hero container">
-            <div>
-                <span class="badge lang" data-id="Full Stack Dev & UI Designer"
-                    data-en="Full Stack Dev & UI Designer">Full Stack Dev & UI Designer</span>
-                <h1 class="hero-title lang" data-id="Halo, saya <br><span class='name'>Rizki.</span>"
-                    data-en="Hi, I am <br><span class='name'>Rizki.</span>">Halo, saya <br><span
-                        class="name">Rizki.</span></h1>
-                <p class="hero-desc lang"
-                    data-id="Saya memadukan kode dan desain menjadi satu pengalaman yang utuh. Membangun website yang tidak hanya cepat, tetapi juga tampil berkelas."
-                    data-en="I blend code and design into one epic experience. Building websites that are not only fast, but look ridiculously premium.">
-                    Saya memadukan kode dan desain menjadi satu pengalaman yang utuh. Membangun website yang tidak hanya
-                    cepat, tetapi juga tampil berkelas.</p>
-                <div class="hero-btns">
-                    <a href="#portfolio" class="btn btn-primary lang" data-id="Lihat Karya" data-en="View Work">Lihat
-                        Karya</a>
-                    <a href="#contact" class="btn btn-outline lang" data-id="Mari Berdiskusi" data-en="Let's Talk">Mari
-                        Berdiskusi</a>
+        <div class="wrap">
+            <section id="home" class="hero">
+                <div>
+                    <span class="status in1" data-i="status">Full Stack Dev &amp; UI Designer</span>
+                    <h1 class="in2" data-i="h1">Halo, saya <br><span class="nm">Rizki.</span></h1>
+                    <p class="lead in3" data-i="lead">Saya memadukan kode dan desain menjadi satu pengalaman yang utuh.
+                        Membangun website yang tidak hanya cepat, tetapi juga tampil berkelas.</p>
+                    <div class="cta in4">
+                        <a href="#portfolio" class="btn p" data-i="cta1">Lihat Karya</a>
+                        <a href="#contact" class="btn" data-i="cta2">Mari Berdiskusi</a>
+                    </div>
                 </div>
-            </div>
-            <div class="pwrap">
-                <div class="portrait"><img src="assets/img/profile.jpg" alt="Rizki" width="512" height="640"
-                        decoding="async"
-                        data-fb="https://ui-avatars.com/api/?name=Rizki&background=151515&color=F8F8F8&size=512"
-                        onerror="this.onerror=null;this.src=this.dataset.fb"></div>
-                <span class="chip c1"><i class="uil uil-brackets-curly"></i>Full Stack Dev</span>
-                <span class="chip c2"><i class="uil uil-palette"></i>UI/UX Designer</span>
-                <span class="chip c3"><b></b>Available for hire</span>
-            </div>
-            <span class="cue" aria-hidden="true"></span>
-        </section>
+                <div class="pf in3">
+                    <img src="assets/img/profile.jpg" alt="Foto Rizki" width="512" height="640"
+                        onerror="this.onerror=null;this.src='https://ui-avatars.com/api/?name=Rizki&background=3d3bf3&color=fff&size=512'">
+                    <span class="chip c1"><i class="uil uil-brackets-curly"></i>Full Stack Dev</span><span
+                        class="chip c2"><i class="uil uil-palette"></i>UI/UX Designer</span><span
+                        class="chip c3"><b></b>Available for hire</span>
+                </div>
+            </section>
+        </div>
 
-        <div class="mq-wrap" aria-hidden="true">
-            <div class="marquee-wrapper">
-                <div class="marquee-content">
-                    <div class="marquee-text">AVAILABLE FOR HIRE <i>✦</i> FULL STACK DEV <i>✦</i> UI/UX DESIGNER
-                        <i>✦</i> CREATIVE CODER <i>✦</i> WEB ENTHUSIAST <i>✦</i></div>
-                </div>
+        <div class="mqw" aria-hidden="true">
+            <div class="mr">
+                <div class="mc"></div>
             </div>
-            <div class="marquee-wrapper alt">
-                <div class="marquee-content rev">
-                    <div class="marquee-text">AVAILABLE FOR HIRE <i>✦</i> FULL STACK DEV <i>✦</i> UI/UX DESIGNER
-                        <i>✦</i> CREATIVE CODER <i>✦</i> WEB ENTHUSIAST <i>✦</i></div>
-                </div>
+            <div class="mr alt">
+                <div class="mc"></div>
             </div>
         </div>
 
-        <section id="about" class="section container">
-            <div class="sec-head rv">
-                <h2 class="sec-title lang" data-id="Tentang Saya" data-en="Who Am I?">Tentang Saya</h2>
-            </div>
-            <div class="bento">
-                <div class="b b-about card rv">
-                    <h3 class="lang" data-id="Belajar Langsung dari Praktik" data-en="Built Different">Belajar Langsung
-                        dari Praktik</h3>
-                    <p class="lang"
-                        data-id="Saya pelajar SMK IDN Islamic Boarding School jurusan Software Engineering. Saya lebih suka langsung terjun ke proyek nyata. Bagi saya, logika backend yang kuat kurang berarti jika tampilan frontend-nya kaku, karena itu saya menguasai keduanya."
-                        data-en="Studying Software Engineering at SMK IDN. My game plan: dive straight into real projects. A powerful backend is useless if the frontend feels stiff. That's why I master both.">
-                        Saya pelajar SMK IDN Islamic Boarding School jurusan Software Engineering. Saya lebih suka
-                        langsung terjun ke proyek nyata. Bagi saya, logika backend yang kuat kurang berarti jika
-                        tampilan frontend-nya kaku, karena itu saya menguasai keduanya.</p>
+        <div class="wrap">
+            <section id="about">
+                <h2 data-i="h_about">Tentang Saya</h2>
+                <div class="about">
+                    <div class="box">
+                        <h3 data-i="a_h">Belajar Langsung dari Praktik</h3>
+                        <p data-i="a_p">Saya pelajar SMK IDN Islamic Boarding School jurusan Software Engineering. Saya
+                            lebih suka langsung terjun ke proyek nyata. Bagi saya, logika backend yang kuat kurang
+                            berarti jika tampilan frontend-nya kaku, karena itu saya menguasai keduanya.</p>
+                    </div>
+                    <div class="stats">
+                        <div class="box st"><b data-n="45">45+</b><span data-i="s1">Proyek Selesai</span></div>
+                        <div class="box st"><b data-n="3">3+</b><span data-i="s2">Klien Bisnis</span></div>
+                    </div>
+                    <div class="box stack">
+                        <h3>Tech stack</h3>
+                        <div class="chips" id="chips"></div>
+                    </div>
                 </div>
-                <div class="b b-stat card rv d1">
-                    <div class="stat-num" data-n="45" data-s="+">45+</div>
-                    <div class="stat-label lang" data-id="Proyek Selesai" data-en="Projects Done">Proyek Selesai</div>
-                </div>
-                <div class="b b-stat card rv d1">
-                    <div class="stat-num" data-n="3" data-s="+">3+</div>
-                    <div class="stat-label lang" data-id="Klien Bisnis" data-en="Biz Clients">Klien Bisnis</div>
-                </div>
-                <div class="b b-skill card rv d2">
-                    <h3 class="lang" data-id="Tech Stack" data-en="Tech Stack">Tech Stack</h3>
-                    <div class="tags" id="tags"></div>
-                </div>
-            </div>
-        </section>
+            </section>
 
-        <section id="education" class="section container">
-            <div class="sec-head rv">
-                <h2 class="sec-title lang" data-id="Pendidikan" data-en="Education">Pendidikan</h2>
-            </div>
-            <div class="edu" id="edu">
-                <span class="edu-line" aria-hidden="true"><span class="edu-fill"></span></span>
-                <ol>
-                    <li class="edu-item rv">
-                        <span class="edu-node" aria-hidden="true"></span>
-                        <article class="edu-card card">
-                            <span class="edu-year">2023 — 2025</span>
-                            <h3>SMP Bina Qurani IBS</h3>
-                            <p><i class="uil uil-brackets-curly"></i>Software Developer &amp; UI/UX Designer</p>
-                            <span class="ghost" aria-hidden="true">2023</span>
-                        </article>
+            <section id="education">
+                <h2 data-i="h_edu">Pendidikan</h2>
+                <ol class="edu">
+                    <li class="ed box"><span class="gh" aria-hidden="true"><b>2023</b></span><span class="yr">2023 —
+                            2025</span>
+                        <h3>SMP Bina Qurani IBS</h3>
+                        <p><i class="uil uil-brackets-curly"></i>Software Developer &amp; UI/UX Designer</p>
                     </li>
-                    <li class="edu-item current rv d1">
-                        <span class="edu-node" aria-hidden="true"></span>
-                        <article class="edu-card card">
-                            <span class="edu-year">2025 —</span><span class="live lang" data-id="Sedang berjalan"
-                                data-en="Ongoing">Sedang berjalan</span>
-                            <h3>SMK IDN IBS</h3>
-                            <p><i class="uil uil-brackets-curly"></i>Software Developer</p>
-                            <span class="ghost" aria-hidden="true">2025</span>
-                        </article>
+                    <li class="ed box now"><span class="gh" aria-hidden="true"><b>2025</b></span><span class="yr">2025
+                            —</span><span class="yr live" data-i="now">Sedang berjalan</span>
+                        <h3>SMK IDN IBS</h3>
+                        <p><i class="uil uil-brackets-curly"></i>Software Developer</p>
                     </li>
                 </ol>
-            </div>
-        </section>
+            </section>
 
-        <section id="certificates" class="section container">
-            <div class="sec-head rv">
-                <h2 class="sec-title lang" data-id="Sertifikat Pilihan" data-en="Selected Certificates">Sertifikat
-                    Pilihan</h2>
-                <p class="sec-sub lang"
-                    data-id="Beberapa sertifikat pilihan sebagai bukti kompetensi. (Klik untuk memperbesar)"
-                    data-en="A few selected certificates. (Click to expand)">Beberapa sertifikat pilihan sebagai bukti
-                    kompetensi. (Klik untuk memperbesar)</p>
-            </div>
-            <div class="certs" id="certs"></div>
-        </section>
+            <section id="certificates">
+                <h2 data-i="h_cert">Sertifikat Pilihan</h2>
+                <p class="sub" data-i="cert_sub">Beberapa sertifikat pilihan sebagai bukti kompetensi. (Klik untuk
+                    memperbesar)</p>
+                <div class="certs" id="certs"></div>
+            </section>
 
-        <section id="portfolio" class="section container">
-            <div class="sec-head rv">
-                <h2 class="sec-title lang" data-id="Proyek Pilihan" data-en="Selected Work">Proyek Pilihan</h2>
-            </div>
-            <div class="works" id="projects"></div>
-        </section>
+            <section id="portfolio">
+                <h2 data-i="h_work">Proyek Pilihan</h2>
+                <div class="work">
+                    <div class="prev">
+                        <div class="bar"><i></i><i></i><i></i><span id="ph"></span></div><button class="zoom" id="pz"
+                            data-g="w" aria-label="Pratinjau proyek"><img id="pi" alt=""></button>
+                    </div>
+                    <div class="list" id="list"></div>
+                </div>
+            </section>
 
-        <section id="contact" class="section container">
-            <div class="contact">
-                <div class="c-box card rv">
-                    <h2 class="sec-title lang" data-id="Mari Bekerja Sama." data-en="Let's Build.">Mari Bekerja Sama.
-                    </h2>
-                    <div class="rows">
-                        <div class="row"><i class="uil uil-whatsapp"></i>
-                            <div>
-                                <h4>WhatsApp</h4>
-                                <p>+62 895-3503-99990</p>
+            <section id="contact">
+                <div class="contact">
+                    <div>
+                        <h2 data-i="h_contact">Mari Bekerja Sama.</h2>
+                        <div class="rows">
+                            <div class="row"><i class="uil uil-whatsapp"></i>
+                                <div><small>WhatsApp</small>
+                                    <p>+62 895-3503-99990</p>
+                                </div><button class="copy" data-c="+62 895-3503-99990" aria-label="Salin nomor"><i
+                                        class="uil uil-copy"></i></button>
                             </div>
-                            <button type="button" class="copy" data-copy="+62 895-3503-99990"
-                                aria-label="Salin nomor WhatsApp"><i class="uil uil-copy"></i></button>
-                        </div>
-                        <div class="row"><i class="uil uil-envelope"></i>
-                            <div>
-                                <h4>Email</h4>
-                                <p>rizkisuryapratama2020@gmail.com</p>
+                            <div class="row"><i class="uil uil-envelope"></i>
+                                <div><small>Email</small>
+                                    <p>rizkisuryapratama2020@gmail.com</p>
+                                </div><button class="copy" data-c="rizkisuryapratama2020@gmail.com"
+                                    aria-label="Salin email"><i class="uil uil-copy"></i></button>
                             </div>
-                            <button type="button" class="copy" data-copy="rizkisuryapratama2020@gmail.com"
-                                aria-label="Salin email"><i class="uil uil-copy"></i></button>
-                        </div>
-                        <div class="row"><i class="uil uil-map-marker"></i>
-                            <div>
-                                <h4 class="lang" data-id="Lokasi" data-en="Location">Lokasi</h4>
-                                <p>Bekasi, Indonesia</p>
+                            <div class="row"><i class="uil uil-map-marker"></i>
+                                <div><small data-i="loc">Lokasi</small>
+                                    <p>Bekasi, Indonesia</p>
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
-                <div class="c-box card rv d1">
-                    <form id="wa-form">
-                        <div class="field"><input type="text" id="name" required autocomplete="name" class="lang"
-                                data-id="Nama kamu" data-en="Your name" placeholder="Nama kamu" aria-label="Nama"></div>
-                        <div class="field"><input type="text" id="topic" required class="lang"
-                                data-id="Apa yang ingin dibuat?" data-en="What's the idea?"
-                                placeholder="Apa yang ingin dibuat?" aria-label="Topik"></div>
-                        <div class="field"><textarea id="message" rows="5" required class="lang"
-                                data-id="Ceritakan detailnya..." data-en="Tell me more..."
-                                placeholder="Ceritakan detailnya..." aria-label="Pesan"></textarea></div>
-                        <button type="submit" class="btn btn-primary"><span class="lang" data-id="Kirim via WhatsApp"
-                                data-en="Send via WhatsApp">Kirim via WhatsApp</span> <i
+                    <form class="box" id="wa">
+                        <input id="fn" required autocomplete="name" data-p="f_name" placeholder="Nama kamu"
+                            aria-label="Nama">
+                        <input id="ft" required data-p="f_topic" placeholder="Apa yang ingin dibuat?"
+                            aria-label="Topik">
+                        <textarea id="fm" rows="5" required data-p="f_msg" placeholder="Ceritakan detailnya..."
+                            aria-label="Pesan"></textarea>
+                        <button class="btn p" type="submit"><span data-i="send">Kirim via WhatsApp</span><i
                                 class="uil uil-arrow-right"></i></button>
                     </form>
                 </div>
-            </div>
-        </section>
+            </section>
+        </div>
     </main>
 
     <footer>
-        <div class="container">
-            <div class="bigname" aria-hidden="true">Rizki.</div>
-            <div class="social">
-                <a href="https://github.com/mrizzzz97" target="_blank" rel="noopener noreferrer" aria-label="GitHub"><i
+        <div class="wrap">
+            <div class="big" aria-hidden="true">Rizki.</div>
+            <div class="soc">
+                <a href="https://github.com/kiiiihasss" target="_blank" rel="noopener noreferrer" aria-label="GitHub"><i
                         class="uil uil-github-alt"></i></a>
                 <a href="https://www.linkedin.com/in/muhammad-rizki-suryapratama" target="_blank"
                     rel="noopener noreferrer" aria-label="LinkedIn"><i class="uil uil-linkedin"></i></a>
@@ -245,12 +185,12 @@
                 <a href="https://www.youtube.com/@m.rizzzz.97" target="_blank" rel="noopener noreferrer"
                     aria-label="YouTube"><i class="uil uil-youtube"></i></a>
             </div>
-            <p>&copy; 2026 Rizki. Crafted with logic & design.</p>
+            <p>&copy; 2026 Rizki. Crafted with logic &amp; design.</p>
         </div>
     </footer>
-    <button type="button" class="top" id="top" aria-label="Kembali ke atas"><i class="uil uil-arrow-up"></i></button>
+    <button class="top" id="top" aria-label="Kembali ke atas"><i class="uil uil-arrow-up"></i></button>
 
-    <script src="assets/js/main.js"></script>
+    <script src="assets/js/main.js"></script>i
 </body>
 
 </html>
